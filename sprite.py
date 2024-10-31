@@ -8,20 +8,16 @@ class Sprite:
         self.position = start_pos  # Position in the grid
         self.cell_size = cell_size
         self.collected_rewards = 0  # Track the number of collected rewards
+        self.path = []  # Store the path for Dijkstra's algorithm
 
-    def move(self, direction, grid):
-        row, col = self.position
-        if direction == "up" and row > 0 and not grid.is_wall(row - 1, col):
-            self.position[0] -= 1
-        elif direction == "down" and row < grid.grid_size - 1 and not grid.is_wall(row + 1, col):
-            self.position[0] += 1
-        elif direction == "left" and col > 0 and not grid.is_wall(row, col - 1):
-            self.position[1] -= 1
-        elif direction == "right" and col < grid.grid_size - 1 and not grid.is_wall(row, col + 1):
-            self.position[1] += 1
+    def set_path(self, path):
+        """Set a path for the sprite to follow."""
+        self.path = path
 
-        # Check for reward collection
-        self.collect_reward(grid)
+    def follow_path(self):
+        """Move along the computed path if available."""
+        if self.path:
+            self.position = self.path.pop(0)
 
     def collect_reward(self, grid):
         """Check if the sprite's current position matches a reward block."""
@@ -33,3 +29,14 @@ class Sprite:
         character_x = self.position[1] * self.cell_size + self.cell_size // 2
         character_y = self.position[0] * self.cell_size + self.cell_size // 2
         pygame.draw.circle(screen, BLACK, (character_x, character_y), self.cell_size // 3)
+
+#  def move(self, direction, grid):
+#         row, col = self.position
+#         if direction == "up" and row > 0 and not grid.is_wall(row - 1, col):
+#             self.position[0] -= 1
+#         elif direction == "down" and row < grid.grid_size - 1 and not grid.is_wall(row + 1, col):
+#             self.position[0] += 1
+#         elif direction == "left" and col > 0 and not grid.is_wall(row, col - 1):
+#             self.position[1] -= 1
+#         elif direction == "right" and col < grid.grid_size - 1 and not grid.is_wall(row, col + 1):
+#             self.position[1] += 1
