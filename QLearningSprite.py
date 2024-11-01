@@ -1,8 +1,9 @@
 import pygame
 import random
-import time  # For delays
+import time
 
 BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
 ACTIONS = ['up', 'down', 'left', 'right']
 
 class QLearningSprite:
@@ -19,6 +20,7 @@ class QLearningSprite:
         self.training_complete = False
         self.optimal_path = []
         self.goal_reached_count = 0
+        self.is_exploring = False
 
     def choose_action(self):
         state = tuple(self.position)
@@ -46,23 +48,24 @@ class QLearningSprite:
         self.move(action, grid)
         new_state = tuple(self.position)
 
-        reward = -1
+        reward = -1  # Default penalty for each step
         self.step_penalties += 1
 
-        if new_state == (self.grid_size - 1, self.grid_size - 1):
+        if new_state == (self.grid_size - 1, self.grid_size - 1):  # Final goal
             reward = 50
             self.goal_reached_count += 1
-            if self.goal_reached_count >= 5:
+            if self.goal_reached_count >= 5:  # Repeat enough to stabilize training
                 self.training_complete = True
+                self.is_exploring = False  # Disable exploring during optimal path calculation
                 if not self.optimal_path:
-                    self.compute_optimal_path(grid)
+                    self.compute_optimal_path(grid)  # Compute path for exploration phase
         elif new_state in grid.rewards:
             reward += 5
             self.collected_rewards += 5
             grid.rewards.remove(new_state)
         elif new_state in grid.punishments:
             reward -= 100
-            self.position = [0, 0]
+            self.position = [0, 0]  # Reset to start if a wall is hit
 
         self.update_q_value(old_state, action, reward, new_state)
 
@@ -78,42 +81,37 @@ class QLearningSprite:
             self.position[1] += 1
 
     def compute_optimal_path(self, grid):
-        current_position = (0, 0)
+        if not self.training_complete:
+            return
+
+        current_position = (0, 0)  # Start from initial position
         self.optimal_path = [current_position]
+        visited_positions = set()
+        max_steps = self.grid_size * self.grid_size
 
         while current_position != (self.grid_size - 1, self.grid_size - 1):
-            if current_position not in self.q_table:
+            if current_position in visited_positions or len(self.optimal_path) > max_steps:
                 break
 
-            best_action = max(
-                ((action, q_value) for action, q_value in self.q_table[current_position].items()
-                 if self.is_valid_move(current_position, action) and not self.will_hit_wall(current_position, action, grid)),
-                key=lambda x: x[1],
-                default=(None, None)
-            )[0]
+            visited_positions.add(current_position)
+
+            if current_position in self.q_table:
+                best_action = max(self.q_table[current_position], key=self.q_table[current_position].get)
+            else:
+                best_action = None
 
             if not best_action:
                 break
 
             next_position = self.get_next_position(current_position, best_action)
+            if grid.is_wall(*next_position) or next_position in visited_positions:
+                break
+
             self.optimal_path.append(next_position)
             current_position = next_position
 
-    def is_valid_move(self, position, action):
-        row, col = position
-        if action == "up" and row > 0:
-            return True
-        elif action == "down" and row < self.grid_size - 1:
-            return True
-        elif action == "left" and col > 0:
-            return True
-        elif action == "right" and col < self.grid_size - 1:
-            return True
-        return False
-
-    def will_hit_wall(self, position, action, grid):
-        row, col = self.get_next_position(position, action)
-        return grid.is_wall(row, col)
+        if current_position == (self.grid_size - 1, self.grid_size - 1):
+            print("Reached goal during exploration; path will reset.")
 
     def get_next_position(self, position, action):
         row, col = position
@@ -130,9 +128,10 @@ class QLearningSprite:
     def follow_optimal_path(self):
         if self.optimal_path:
             self.position = self.optimal_path.pop(0)
-            pygame.time.delay(200)
+            pygame.time.delay(200)  # Slow down movement for visualization
 
     def draw(self, screen):
+        color = BLUE if self.is_exploring else BLACK  # Blue when exploring
         x = self.position[1] * self.cell_size + self.cell_size // 2
         y = self.position[0] * self.cell_size + self.cell_size // 2
-        pygame.draw.circle(screen, BLACK, (x, y), self.cell_size // 3)
+        pygame.draw.circle(screen, color, (x, y), self.cell_size // 3)
