@@ -9,7 +9,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 class QLearningSprite:
-    def __init__(self, start_position, cell_size, rows, cols, alpha=0.1, gamma=0.99, epsilon=0.6, max_steps=5000):
+    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.99, epsilon=0.6, max_steps=5000):
         self.position = start_position
         self.cell_size = cell_size
         self.rows = rows
