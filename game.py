@@ -25,6 +25,7 @@ class Game:
         self.running = False
         self.font = pygame.font.SysFont("Arial", 20)
         self.clock = pygame.time.Clock()
+        self.exploration_complete = False  # Track if exploration is complete
 
         # Dropdown menu for selecting algorithms
         self.algorithms = ["Dijkstra", "Q-learning"]
@@ -34,10 +35,10 @@ class Game:
     def handle_buttons(self, pos):
         # Start button
         if 10 <= pos[0] <= 110 and GRID_ROWS * CELL_SIZE + 10 <= pos[1] <= GRID_ROWS * CELL_SIZE + 40:
-            self.start_simulation()
-        # Reset button
-        elif 130 <= pos[0] <= 230 and GRID_ROWS * CELL_SIZE + 10 <= pos[1] <= GRID_ROWS * CELL_SIZE + 40:
-            self.reset_simulation()
+            if self.exploration_complete:
+                self.reset_simulation()  # If exploration is complete, behave like reset
+            else:
+                self.start_simulation()
 
     def start_simulation(self):
         start = (0, 0)
@@ -54,6 +55,7 @@ class Game:
         self.dijkstra_sprite.position = [0, 0]
         self.qlearning_sprite.reset()  # Hard reset the Q-learning agent
         self.running = False
+        self.exploration_complete = False  # Reset exploration state
 
     def display_message(self, text):
         message = self.font.render(text, True, BLACK)
@@ -64,20 +66,18 @@ class Game:
         self.grid.draw(self.screen)
         self.current_sprite.draw(self.screen)
 
-        # Draw the Start and Reset buttons
+        # Draw the Start button
         pygame.draw.rect(self.screen, BLUE, (10, GRID_ROWS * CELL_SIZE + 10, 100, 30))
         self.screen.blit(self.font.render("Start", True, WHITE), (20, GRID_ROWS * CELL_SIZE + 15))
-        pygame.draw.rect(self.screen, BLUE, (130, GRID_ROWS * CELL_SIZE + 10, 100, 30))
-        self.screen.blit(self.font.render("Reset", True, WHITE), (140, GRID_ROWS * CELL_SIZE + 15))
 
-        # Draw dropdown for algorithm selection next to Reset
-        pygame.draw.rect(self.screen, (150, 150, 150), (250, GRID_ROWS * CELL_SIZE + 10, 150, 30))
-        self.screen.blit(self.font.render(self.selected_algorithm, True, BLACK), (260, GRID_ROWS * CELL_SIZE + 15))
+        # Draw dropdown for algorithm selection next to Start
+        pygame.draw.rect(self.screen, (150, 150, 150), (130, GRID_ROWS * CELL_SIZE + 10, 150, 30))
+        self.screen.blit(self.font.render(self.selected_algorithm, True, BLACK), (140, GRID_ROWS * CELL_SIZE + 15))
         if self.dropdown_active:
             for i, option in enumerate(self.algorithms):
-                option_rect = pygame.Rect(250, GRID_ROWS * CELL_SIZE + 10 + (i + 1) * 30, 150, 30)
+                option_rect = pygame.Rect(130, GRID_ROWS * CELL_SIZE + 10 + (i + 1) * 30, 150, 30)
                 pygame.draw.rect(self.screen, (100, 100, 100), option_rect)
-                self.screen.blit(self.font.render(option, True, WHITE), (260, GRID_ROWS * CELL_SIZE + 15 + (i + 1) * 30))
+                self.screen.blit(self.font.render(option, True, WHITE), (140, GRID_ROWS * CELL_SIZE + 15 + (i + 1) * 30))
 
         pygame.display.flip()
 
@@ -93,11 +93,11 @@ class Game:
                 else:
                     self.handle_buttons(mouse_pos)
                     # Check if dropdown is clicked
-                    if 250 <= mouse_pos[0] <= 400 and GRID_ROWS * CELL_SIZE + 10 <= mouse_pos[1] <= GRID_ROWS * CELL_SIZE + 40:
+                    if 130 <= mouse_pos[0] <= 280 and GRID_ROWS * CELL_SIZE + 10 <= mouse_pos[1] <= GRID_ROWS * CELL_SIZE + 40:
                         self.dropdown_active = not self.dropdown_active
                     elif self.dropdown_active:
                         for i, option in enumerate(self.algorithms):
-                            option_rect = pygame.Rect(250, GRID_ROWS * CELL_SIZE + 10 + (i + 1) * 30, 150, 30)
+                            option_rect = pygame.Rect(130, GRID_ROWS * CELL_SIZE + 10 + (i + 1) * 30, 150, 30)
                             if option_rect.collidepoint(mouse_pos):
                                 self.selected_algorithm = option
                                 self.dropdown_active = False
@@ -114,6 +114,9 @@ class Game:
             elif self.selected_algorithm == "Q-learning":
                 # Q-learning training or policy following
                 self.qlearning_sprite.take_step(self.grid)
+                # Check if exploration is complete
+                if self.qlearning_sprite.training_complete:
+                    self.exploration_complete = True
 
     def run(self):
         while True:
