@@ -6,15 +6,22 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 class Grid:
-    def __init__(self, grid_size, cell_size):
-        self.grid_size = grid_size
+    def __init__(self, rows, cols, cell_size):
+        self.rows = rows
+        self.cols = cols
         self.cell_size = cell_size
-        self.maze = [[WHITE] * grid_size for _ in range(grid_size)]
-        self.rewards = set()
-        self.punishments = set()
+        self.maze = [[WHITE] * cols for _ in range(rows)]
+        self.rewards = set()  # Set of reward positions
+        self.punishments = set()  # Set of punishment positions
+        self.collected_rewards = set()  # Track collected rewards
+        self.goal_position = (rows - 1, cols - 1)  # Define goal as bottom-right corner
 
     def toggle_cell(self, pos):
+        # Use floor division to ensure row and col are integers
         row, col = pos[1] // self.cell_size, pos[0] // self.cell_size
+        row, col = int(row), int(col)  # Explicitly cast to int for safety
+        
+        # Toggle cell color/state between reward, punishment, and default
         if (row, col) in self.rewards:
             self.rewards.remove((row, col))
             self.punishments.add((row, col))
@@ -29,14 +36,27 @@ class Grid:
     def is_wall(self, row, col):
         return self.maze[row][col] == RED
 
+    def get_reward(self, position):
+        position = tuple(position)  # Convert list to tuple
+        if position == self.goal_position:
+            return 150  # High reward for reaching the goal
+        elif position in self.rewards and position not in self.collected_rewards:
+            self.collected_rewards.add(position)  # Mark the reward as collected
+            return 10  # Reward for stepping on a green block
+        elif position in self.punishments:
+            return -10
+        else:
+            return -1  # Default move penalty
+        
     def reset_rewards_and_punishments(self):
         self.rewards.clear()
         self.punishments.clear()
-        self.maze = [[WHITE] * self.grid_size for _ in range(self.grid_size)]
+        self.collected_rewards.clear()  # Clear collected rewards
+        self.maze = [[WHITE] * self.cols for _ in range(self.rows)]
 
     def draw(self, screen):
-        for row in range(self.grid_size):
-            for col in range(self.grid_size):
+        for row in range(self.rows):
+            for col in range(self.cols):
                 rect = pygame.Rect(col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size)
                 pygame.draw.rect(screen, self.maze[row][col], rect)
-                pygame.draw.rect(screen, BLACK, rect, 1)  # Border
+                # pygame.draw.rect(screen, BLACK, rect, 1)  # Border

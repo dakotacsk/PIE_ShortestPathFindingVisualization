@@ -35,10 +35,12 @@ class DijkstraSprite:
                 break
 
             row, col = current_position
+            # Define neighbors in terms of row and column changes
             neighbors = [(row + 1, col), (row - 1, col), (row, col + 1), (row, col - 1)]
             for neighbor in neighbors:
                 n_row, n_col = neighbor
-                if (0 <= n_row < self.grid.grid_size and 0 <= n_col < self.grid.grid_size 
+                # Adjust bounds checking for a rectangular grid (rows and columns)
+                if (0 <= n_row < self.grid.rows and 0 <= n_col < self.grid.cols 
                     and not self.grid.is_wall(n_row, n_col)):  # Skip walls
                     distance = current_distance + 1
                     if neighbor not in distances or distance < distances[neighbor]:
