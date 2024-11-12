@@ -10,7 +10,7 @@ BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
 
 class QLearningSprite:
-    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.99, epsilon=0.6, max_steps=5000):
+    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=5000):
         self.position = start_position
         self.cell_size = cell_size
         self.rows = rows
@@ -30,6 +30,8 @@ class QLearningSprite:
         self.color = BLACK
         self.current_message = ""  # For displaying messages
         self.step_message = ""  # For displaying step count messages
+        self.oscillation_count = 0  # Count number of oscillations for cut scene
+
 
     def add_message(self, message, is_step_message=False):
         if is_step_message:

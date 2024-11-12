@@ -33,6 +33,8 @@ def show_instructions(screen, main_menu_callback):
         "- Press Space to select",
         "",
         "Enjoy the demonstration and feel free to explore!"
+        "",
+        "Press Enter to go back."
     ]
 
     # Word wrapping function
