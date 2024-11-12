@@ -11,7 +11,7 @@ BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
 
 class QLearningSprite:
-    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=5000, oscillation_callback=None, screen=None, retry_callback=None):
+    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=5000, oscillation_callback=None, retry_callback=None, screen=None):
         self.position = start_position
         self.cell_size = cell_size
         self.rows = rows
@@ -35,15 +35,13 @@ class QLearningSprite:
         self.oscillation_callback = oscillation_callback  # Store the callback
         self.screen = screen
         self.retry_callback = retry_callback
-
-
+        self.oscillation_detected = False  # Flag to indicate if oscillation was detected
 
     def add_message(self, message, is_step_message=False):
         if is_step_message:
             self.step_message = message
         else:
             self.current_message = message
-
 
     def reset(self):
         self.position = [0, 0]
@@ -161,7 +159,6 @@ class QLearningSprite:
 
         time.sleep(0.5)
 
-
     def draw_q_values_on_grid(self, screen):
         font = pygame.font.Font('./fonts/PressStart2P-Regular.ttf', 8)  # Retro font
         offsets = [(0, -self.cell_size // 4), (self.cell_size // 4, 0), (0, self.cell_size // 4), (-self.cell_size // 4, 0)]  # Positions for up, right, down, left
@@ -184,8 +181,6 @@ class QLearningSprite:
                     text_surface = font.render(f"{q_value:.1f}", True, (0, 0, 0))  # Display with 1 decimal place
                     text_rect = text_surface.get_rect(center=(center_x + offsets[i][0], center_y + offsets[i][1]))
                     screen.blit(text_surface, text_rect)
-
-
 
     def wrap_text(self, text, font, max_width):
         words = text.split(' ')
@@ -218,7 +213,6 @@ class QLearningSprite:
                 screen.blit(text_surface, (10, y_offset))
                 y_offset += 20
 
-
     def draw(self, screen, grid):
         # Draw the sprite
         x, y = self.position[1] * self.cell_size + self.cell_size // 2, self.position[0] * self.cell_size + self.cell_size // 2
@@ -230,6 +224,12 @@ class QLearningSprite:
         # Draw the current message at the bottom of the screen
         self.draw_message(screen)
 
-
+    # def trigger_oscillation_explanation(self):
+    #     print("in here")
+    #     explanation_screen = OscillationExplanation(self.screen, self.retry_callback)
+    #     explanation_screen.run()
+    
     def trigger_oscillation_explanation(self):
-        OscillationExplanation(self.screen, self.retry_callback)
+        print("in here")
+        explanation_screen = OscillationExplanation(self.screen, self.retry_callback)
+        explanation_screen.run()  # Pass the retry callback when running

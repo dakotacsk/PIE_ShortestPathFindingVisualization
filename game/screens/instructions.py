@@ -14,15 +14,25 @@ class Instructions(ScrollingTextDisplay):
         super().__init__(screen, "Instructions", instructions_content, font_path='./fonts/PressStart2P-Regular.ttf', font_size=20)
 
     def run(self):
-        # Call the base class's run method explicitly
-        super().run(self.wait_for_key)
+        running = True
+        while running:
+            self.screen.fill((0, 0, 0))  # Clear the screen
+            self.scroll_content()  # Handle any scrolling behavior
+            self.render()  # Render the content
 
-    def wait_for_key(self):
-        waiting = True
-        while waiting:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
-                    waiting = False
+                    if event.key == pygame.K_RETURN:  # Exit on pressing Enter
+                        running = False
+                    elif event.key == pygame.K_UP:
+                        self.key_up_pressed = True
+                    elif event.key == pygame.K_DOWN:
+                        self.key_down_pressed = True
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_UP:
+                        self.key_up_pressed = False
+                    elif event.key == pygame.K_DOWN:
+                        self.key_down_pressed = False

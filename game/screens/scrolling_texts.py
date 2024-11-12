@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+
 class ScrollingTextDisplay:
     def __init__(self, screen, title_text, content_lines, font_path='./fonts/PressStart2P-Regular.ttf', font_size=20, logo_path=None):
         self.screen = screen
@@ -40,26 +41,6 @@ class ScrollingTextDisplay:
             lines.append(line.strip())
         return lines
 
-    def handle_events(self, main_menu_callback):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:  # Return to main menu
-                    main_menu_callback()
-                    return False  # Stop running
-                elif event.key == pygame.K_UP:  # Scroll up
-                    self.key_up_pressed = True
-                elif event.key == pygame.K_DOWN:  # Scroll down
-                    self.key_down_pressed = True
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_UP:
-                    self.key_up_pressed = False
-                elif event.key == pygame.K_DOWN:
-                    self.key_down_pressed = False
-        return True
-
     def scroll_content(self):
         if self.key_up_pressed:
             self.scroll_y += self.scroll_speed
@@ -85,9 +66,18 @@ class ScrollingTextDisplay:
         pygame.display.flip()
         self.clock.tick(60)
 
-    def run(self, main_menu_callback):
-        running = True
-        while running:
-            running = self.handle_events(main_menu_callback)
-            self.scroll_content()
-            self.render()
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:  # Scroll up
+                    self.key_up_pressed = True
+                elif event.key == pygame.K_DOWN:  # Scroll down
+                    self.key_down_pressed = True
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    self.key_up_pressed = False
+                elif event.key == pygame.K_DOWN:
+                    self.key_down_pressed = False

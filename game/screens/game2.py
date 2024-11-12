@@ -15,7 +15,6 @@ class Game2:
             cell_size=100,
             rows=5,
             cols=8,
-            oscillation_callback=self.handle_oscillation,  # Pass the oscillation callback
             screen=self.screen,
             retry_callback=self.retry_game  # Pass the retry callback
         )
