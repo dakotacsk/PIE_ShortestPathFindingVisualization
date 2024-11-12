@@ -2,6 +2,7 @@ import numpy as np
 import random
 import time
 import pygame
+from screens.oscillation_explanation import oscillation_explanation
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -10,7 +11,7 @@ BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
 
 class QLearningSprite:
-    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=5000):
+    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=500, oscillation_callback=None, screen=None, retry_callback=None):
         self.position = start_position
         self.cell_size = cell_size
         self.rows = rows
@@ -30,7 +31,11 @@ class QLearningSprite:
         self.color = BLACK
         self.current_message = ""  # For displaying messages
         self.step_message = ""  # For displaying step count messages
-        self.oscillation_count = 0  # Count number of oscillations for cut scene
+        self.oscillation_count = 0  # Count number of oscillations
+        self.oscillation_callback = oscillation_callback  # Store the callback
+        self.screen = screen
+        self.retry_callback = retry_callback
+
 
 
     def add_message(self, message, is_step_message=False):
@@ -81,12 +86,12 @@ class QLearningSprite:
 
             if 0 <= new_row < self.rows and 0 <= new_col < self.cols:
                 if len(self.recent_positions) > 1 and new_position == self.recent_positions[-2]:
-                    self.q_table[state][action] += self.alpha * (-50 - self.q_table[state][action])
+                    self.q_table[state][action] += self.alpha * (-5 - self.q_table[state][action])
                     self.add_message(f"Oscillation detected. Penalty applied.")
                     continue
 
                 if grid.maze[new_row][new_col] == RED:
-                    self.q_table[state][action] += self.alpha * (-500 - self.q_table[state][action])
+                    self.q_table[state][action] += self.alpha * (-50 - self.q_table[state][action])
                     self.add_message(f"Moved onto a red block. Heavy penalty applied.")
                 
                 self.recent_positions.append(self.position[:])
@@ -99,10 +104,10 @@ class QLearningSprite:
                 self.add_message(f"Step Count: {self.current_steps}.", is_step_message=True)
 
             else:
-                self.q_table[state][action] += self.alpha * (-15 - self.q_table[state][action])
-                self.add_message(f"Invalid move attempted. Penalty applied.")
+                self.q_table[state][action] += self.alpha * (-50 - self.q_table[state][action])
+                self.add_message(f"Invalid move attempted. Heavy penalty applied.")
 
-        reward = -1
+        reward = 0
         reward += grid.get_reward(self.position)
         new_state = self.position_to_state()
         best_next_action = np.max(self.q_table[new_state])
@@ -131,6 +136,23 @@ class QLearningSprite:
         if 0 <= new_row < self.rows and 0 <= new_col < self.cols:
             self.previous_position = self.position[:]  # Store the previous position
             self.position = [new_row, new_col]  # Move to the new position
+
+            # Check for oscillation
+            if len(self.recent_positions) > 2 and self.position in self.recent_positions[-2:]:
+                self.oscillation_count += 1
+                self.add_message("Oscillation detected during policy following.")
+                self.color = RED  # Optionally change color to indicate oscillation
+
+                # Check if oscillation count exceeds threshold
+                if self.oscillation_count > 3:
+                    self.trigger_oscillation_explanation()
+            else:
+                self.oscillation_count = 0  # Reset count if no oscillation detected
+
+            self.recent_positions.append(self.position[:])
+            if len(self.recent_positions) > 10:  # Limit the size of the recent positions list
+                self.recent_positions.pop(0)
+
             self.add_message(f"Moved to new position: {self.position}")
         else:
             self.add_message(f"Invalid move attempted from {self.position} with action {action}. Staying in place.")
@@ -138,6 +160,7 @@ class QLearningSprite:
             time.sleep(1)  # Flash red for invalid moves during policy following
 
         time.sleep(0.5)
+
 
     def draw_q_values_on_grid(self, screen):
         font = pygame.font.Font('./fonts/PressStart2P-Regular.ttf', 8)  # Retro font
@@ -208,4 +231,5 @@ class QLearningSprite:
         self.draw_message(screen)
 
 
-    
+    def trigger_oscillation_explanation(self):
+        oscillation_explanation(self.screen, self.retry_callback)

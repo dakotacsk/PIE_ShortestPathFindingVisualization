@@ -42,9 +42,9 @@ class Grid:
             return 150  # High reward for reaching the goal
         elif position in self.rewards and position not in self.collected_rewards:
             self.collected_rewards.add(position)  # Mark the reward as collected
-            return 10  # Reward for stepping on a green block
+            return 50  # Reward for stepping on a green block
         elif position in self.punishments:
-            return -10
+            return -50
         else:
             return -1  # Default move penalty
         
