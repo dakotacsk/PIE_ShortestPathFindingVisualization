@@ -2,7 +2,7 @@ import numpy as np
 import random
 import time
 import pygame
-from screens.oscillation_explanation import oscillation_explanation
+from screens.oscillation_explanation import OscillationExplanation
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -11,7 +11,7 @@ BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
 
 class QLearningSprite:
-    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=500, oscillation_callback=None, screen=None, retry_callback=None):
+    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=5000, oscillation_callback=None, screen=None, retry_callback=None):
         self.position = start_position
         self.cell_size = cell_size
         self.rows = rows
@@ -104,7 +104,7 @@ class QLearningSprite:
                 self.add_message(f"Step Count: {self.current_steps}.", is_step_message=True)
 
             else:
-                self.q_table[state][action] += self.alpha * (-50 - self.q_table[state][action])
+                self.q_table[state][action] += self.alpha * (-100 - self.q_table[state][action])
                 self.add_message(f"Invalid move attempted. Heavy penalty applied.")
 
         reward = 0
@@ -232,4 +232,4 @@ class QLearningSprite:
 
 
     def trigger_oscillation_explanation(self):
-        oscillation_explanation(self.screen, self.retry_callback)
+        OscillationExplanation(self.screen, self.retry_callback)

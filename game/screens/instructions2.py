@@ -1,25 +1,18 @@
 import pygame
 import sys
+from screens.scrolling_texts import ScrollingTextDisplay  # Assuming the generic class is defined as suggested
 
-class Instructions2:
+class Instructions2(ScrollingTextDisplay):
     def __init__(self, screen):
-        self.screen = screen
-        self.font = pygame.font.Font(None, 30)
-
-    def run(self):
-        self.screen.fill((0, 0, 0))
-        instructions = [
+        instructions_content = [
             "Level 2 - Q-Learning Arena:",
             "Objective: Adapt to changing paths and maximize rewards.",
             "Controls: Use arrow keys to move."
         ]
-        y_offset = 100
-        for line in instructions:
-            text = self.font.render(line, True, (255, 255, 255))
-            self.screen.blit(text, (50, y_offset))
-            y_offset += 40
-        pygame.display.flip()
-        self.wait_for_key()
+        super().__init__(screen, "Instructions Level 2", instructions_content, font_path='./fonts/PressStart2P-Regular.ttf', font_size=20)
+
+    def run(self):
+        super().run(self.wait_for_key)
 
     def wait_for_key(self):
         waiting = True

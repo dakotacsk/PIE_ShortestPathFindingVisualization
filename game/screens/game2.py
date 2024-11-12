@@ -1,20 +1,23 @@
 import pygame
 from grid.grid import Grid
 from sprites.QLearningSprite import QLearningSprite
-from screens.oscillation_explanation import oscillation_explanation
+from screens.oscillation_explanation import OscillationExplanation  # Import the oscillation explanation function
 
 class Game2:
     def __init__(self, screen):
         self.screen = screen
+        self.init_game()  # Initialize game variables and objects
+
+    def init_game(self):
         self.grid = Grid(rows=5, cols=8, cell_size=100)  # Adjust as needed
         self.sprite = QLearningSprite(
             start_position=[0, 0],
             cell_size=100,
             rows=5,
             cols=8,
-            oscillation_callback=self.handle_oscillation,
+            oscillation_callback=self.handle_oscillation,  # Pass the oscillation callback
             screen=self.screen,
-            retry_callback=self.run  # Pass the run method as the retry callback
+            retry_callback=self.retry_game  # Pass the retry callback
         )
         self.selected_position = [0, 0]  # Start at the first block
         self.blink = True
@@ -30,10 +33,6 @@ class Game2:
             self.update()
             self.render()
             clock.tick(60)
-
-    def handle_oscillation(self):
-        # Call the oscillation explanation with a retry callback
-        oscillation_explanation(self.screen, self.run)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -86,3 +85,12 @@ class Game2:
 
         self.sprite.draw(self.screen, self.grid)  # Pass grid as a second argument
         pygame.display.flip()
+
+    def handle_oscillation(self):
+        # Call the oscillation explanation screen
+        OscillationExplanation(self.screen, self.retry_game)
+
+    def retry_game(self):
+        # Reinitialize the game state for retrying
+        self.init_game()
+        self.run()  # Start the game loop again
