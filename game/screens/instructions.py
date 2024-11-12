@@ -11,7 +11,8 @@ class Instructions:
         instructions = [
             "Level 1 - Dijkstra's Maze:",
             "Objective: Navigate through the maze and find the shortest path.",
-            "Controls: Use arrow keys to move the walls and reward points. Click once for wall, click twice for reward.",
+            "Controls: Use arrow keys to move the walls and reward points." ,
+            "Click once for wall, click twice for reward.",
             ""
         ]
         y_offset = 100
