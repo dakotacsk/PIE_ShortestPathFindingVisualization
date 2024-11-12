@@ -71,5 +71,6 @@ class Game2:
             y = self.selected_position[0] * self.grid.cell_size
             pygame.draw.rect(self.screen, (0, 0, 0), (x, y, self.grid.cell_size, self.grid.cell_size), 3)
 
-        self.sprite.draw(self.screen)
+        self.sprite.draw(self.screen, self.grid)  # Pass grid as a second argument
         pygame.display.flip()
+
