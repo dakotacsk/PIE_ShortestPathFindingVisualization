@@ -40,7 +40,7 @@ class Grid:
         position = tuple(position)  # Convert list to tuple
         if position == self.goal_position:
             return 150  # High reward for reaching the goal
-        elif position in self.rewards and position not in self.collected_rewards:
+        elif position in self.rewards:
             self.collected_rewards.add(position)  # Mark the reward as collected
             return 50  # Reward for stepping on a green block
         elif position in self.punishments:

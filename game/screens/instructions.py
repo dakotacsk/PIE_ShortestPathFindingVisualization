@@ -11,7 +11,7 @@ class Instructions(ScrollingTextDisplay):
             "Click once for wall, click twice for reward.",
             ""
         ]
-        super().__init__(screen, "Instructions", instructions_content, font_path='./fonts/PressStart2P-Regular.ttf', font_size=20)
+        super().__init__(screen, "Instructions", instructions_content, font_size=20)
 
     def run(self):
         running = True

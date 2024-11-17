@@ -3,6 +3,7 @@ import random
 import time
 import pygame
 from screens.oscillation_explanation import OscillationExplanation
+from screens.ending_scene import EndingScene
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -116,6 +117,8 @@ class QLearningSprite:
         if self.position == self.goal_position:
             self.color = YELLOW
             self.add_message("Goal reached during policy following.")
+            time.sleep(2)
+            self.trigger_ending_screen()
             return
 
         state = self.position_to_state()
@@ -224,12 +227,11 @@ class QLearningSprite:
         # Draw the current message at the bottom of the screen
         self.draw_message(screen)
 
-    # def trigger_oscillation_explanation(self):
-    #     print("in here")
-    #     explanation_screen = OscillationExplanation(self.screen, self.retry_callback)
-    #     explanation_screen.run()
     
+    def trigger_ending_screen(self):
+        ending_screen = EndingScene(self.screen, self.retry_callback)
+        ending_screen.run()  # Pass the retry callback when running
+
     def trigger_oscillation_explanation(self):
-        print("in here")
         explanation_screen = OscillationExplanation(self.screen, self.retry_callback)
         explanation_screen.run()  # Pass the retry callback when running

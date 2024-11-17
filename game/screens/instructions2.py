@@ -9,7 +9,7 @@ class Instructions2(ScrollingTextDisplay):
             "Objective: Adapt to changing paths and maximize rewards.",
             "Controls: Use arrow keys to move."
         ]
-        super().__init__(screen, "Instructions Level 2", instructions_content, font_path='./fonts/PressStart2P-Regular.ttf', font_size=20)
+        super().__init__(screen, "Instructions Level 2", instructions_content, font_size=20)
 
     def run(self):
         running = True
