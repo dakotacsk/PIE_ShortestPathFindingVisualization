@@ -5,10 +5,15 @@ from screens.scrolling_texts import ScrollingTextDisplay  # Assuming the generic
 class Instructions(ScrollingTextDisplay):
     def __init__(self, screen):
         instructions_content = [
-            "Level 1 - Dijkstra's Maze:",
-            "Objective: Navigate through the maze and find the shortest path.",
-            "Controls: Use arrow keys to move the walls and reward points.",
-            "Click once for wall, click twice for reward.",
+            "Tutorial Level - Dijkstra's Maze:",
+            "Objective: Sprite wants to move from the left corner of the grid to the right lowest corner.",
+            "You are in charge of creating a ****for Sprite to walk through.",
+            "You can place ****, which Sprite loves and will walk to, or",
+            "you can place ****, which Sprite hates and refuse to walk on.",
+            "Controls: Use arrow keys to move the black box. Click the green button once to place a **** (red block),",
+            "click the green button again to place a **** (green block), ",
+            "click the green button once more to revert it to normal. ",
+            "Have fun!",
             ""
         ]
         super().__init__(screen, "Instructions", instructions_content, font_size=20)

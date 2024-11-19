@@ -1,18 +1,21 @@
 import pygame
 import sys
-from screens.scrolling_texts import ScrollingTextDisplay  # Assuming the base class is defined
+from screens.scrolling_texts import ScrollingTextDisplay 
+from screens.leaderboard import Leaderboard 
 
 class EndingScene(ScrollingTextDisplay):
-    def __init__(self, screen, retry_callback):
+    def __init__(self, screen, retry_callback, user_score):
         explanation_text = [
             "Congratulations for finishing the game!",
-            "Your score is: " ,
+            f"Your score is: {user_score}",
             "Press Space to save your score and go to the leaderboard!",
             "",
             "Press Enter to retry training the model."
         ]
-        super().__init__(screen, "Q-Learning Oscillation Explanation", explanation_text, font_size=16)
+        super().__init__(screen, "Ending Screen", explanation_text, font_size=16)
         self.retry_callback = retry_callback
+        self.user_score = user_score
+        self.leaderboard = Leaderboard(screen, retry_callback, user_score)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -22,6 +25,10 @@ class EndingScene(ScrollingTextDisplay):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:  # Retry when Enter is pressed
                     self.retry_callback()
+                    return False  # Stop running
+                elif event.key == pygame.K_SPACE:  # Save score and go to the leaderboard when Space is pressed
+                    self.leaderboard.save_score(self.user_score)  # Save the score to the leaderboard
+                    self.leaderboard.run()  # Display the leaderboard
                     return False  # Stop running
                 elif event.key == pygame.K_UP:
                     self.key_up_pressed = True  # Trigger scroll up

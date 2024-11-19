@@ -5,11 +5,11 @@ from screens.scrolling_texts import ScrollingTextDisplay  # Assuming the generic
 class Instructions2(ScrollingTextDisplay):
     def __init__(self, screen):
         instructions_content = [
-            "Level 2 - Q-Learning Arena:",
-            "Objective: Adapt to changing paths and maximize rewards.",
+            "Gameplay - Q-Learning Arena:",
+            "Objective: Adapt to changing paths and maximize rewards. ****",
             "Controls: Use arrow keys to move."
         ]
-        super().__init__(screen, "Instructions Level 2", instructions_content, font_size=20)
+        super().__init__(screen, "Instructions Gameplay", instructions_content, font_size=20)
 
     def run(self):
         running = True

@@ -229,7 +229,7 @@ class QLearningSprite:
 
     
     def trigger_ending_screen(self):
-        ending_screen = EndingScene(self.screen, self.retry_callback)
+        ending_screen = EndingScene(self.screen, self.retry_callback, user_score=100)
         ending_screen.run()  # Pass the retry callback when running
 
     def trigger_oscillation_explanation(self):
