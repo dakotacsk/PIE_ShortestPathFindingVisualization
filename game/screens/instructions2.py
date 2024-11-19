@@ -6,8 +6,14 @@ class Instructions2(ScrollingTextDisplay):
     def __init__(self, screen):
         instructions_content = [
             "Gameplay - Q-Learning Arena:",
-            "Objective: Adapt to changing paths and maximize rewards. ****",
-            "Controls: Use arrow keys to move."
+            "Objective: Adapt to changing paths and maximize rewards using the Q-learning table.",
+            "The Q-learning table is displayed with four numbers representing potential values for up, down, left, and right directions.",
+            "Controls: Use arrow keys to move the Sprite through the grid.",
+            "Mechanics: The more steps the Sprite takes, the more punishments it accumulates.",
+            "Note: Sprite has a limited number of steps before it 'runs out of gas' (game over).",
+            "Green blocks give negative points (punishments), while red blocks grant positive points (rewards).",
+            "Your goal is to find the optimal path that minimizes punishment and maximizes reward.",
+            ""
         ]
         super().__init__(screen, "Instructions Gameplay", instructions_content, font_size=20)
 
