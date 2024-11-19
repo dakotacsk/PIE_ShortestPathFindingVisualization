@@ -1,5 +1,6 @@
 import pygame
 import sys
+import RPi.GPIO as GPIO  # Import RPi.GPIO library
 from screens.credits_instructions import show_instructions
 
 class MainMenu:
@@ -15,6 +16,13 @@ class MainMenu:
         self.logo = pygame.image.load('./images/logo.png')
         self.logo = pygame.transform.scale(self.logo, (500, 200))  # Resize as needed
 
+        # GPIO setup
+        GPIO.setmode(GPIO.BCM)  # Use Broadcom pin numbering
+        self.up_button_channel = 6
+        self.down_button_channel = 22
+        GPIO.setup(self.up_button_channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.down_button_channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
     def run(self):
         running = True
         clock = pygame.time.Clock()
@@ -27,6 +35,7 @@ class MainMenu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
+                    GPIO.cleanup()  # Clean up GPIO pins before exiting
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
@@ -40,7 +49,17 @@ class MainMenu:
                             show_instructions(self.screen, self.run)  # Pass self.run as the callback to return to menu
                         elif self.options[self.selected_index] == "Exit Game":
                             pygame.quit()
+                            GPIO.cleanup()  # Clean up GPIO pins before exiting
                             sys.exit()
+
+            # Handle GPIO button input (in addition to keyboard input)
+            if not GPIO.input(self.down_button_channel):  # Button pressed (active low)
+                self.selected_index = (self.selected_index + 1) % len(self.options)
+                pygame.time.wait(150)  # Debounce delay
+
+            if not GPIO.input(self.up_button_channel):  # Button pressed (active low)
+                self.selected_index = (self.selected_index - 1) % len(self.options)
+                pygame.time.wait(150)  # Debounce delay
 
             # Update the blinking logo timer
             self.blinking_logo_timer += clock.tick(60)
@@ -74,3 +93,11 @@ class MainMenu:
 
             # Center text horizontally
             self.screen.blit(text, (self.screen.get_width() // 2 - text.get_width() // 2, menu_y_start + i * 60))
+
+# Remember to clean up GPIO when you're done
+if __name__ == "__main__":
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))  # Set your screen dimensions
+    menu = MainMenu(screen)
+    menu.run()
+    GPIO.cleanup()  # Clean up GPIO pins after exiting
