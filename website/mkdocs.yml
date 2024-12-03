@@ -10,6 +10,9 @@ nav:
       - Final Presentation: final.md
       # - Next Steps: next_steps.md
   - Download!: download.md
+markdown_extensions:
+  - attr_list
+  - md_in_html
 extra:
   generator: false
   # logo: assets/img/avatar_me_plip.png

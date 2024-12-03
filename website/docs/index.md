@@ -1,17 +1,5 @@
-# Welcome to MkDocs
+# Welcome to PathFinder
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+PathFinder is an innovative project combining arcade-style mechanics with interactive Q-learning visualizations. Our aim is to educate and engage through fun, interactive demonstrations of complex algorithms.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Learn more about our project, the team, and make it yourself!
