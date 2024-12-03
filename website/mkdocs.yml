@@ -1,0 +1,15 @@
+site_name: PathFinder
+theme:
+  name: simple-blog
+nav:
+  - Home: index.md
+  - Meet the Team: team.md
+  - Project Overview:
+      - Sprint 1: sprint1.md
+      - Sprint 2: sprint2.md
+      - Final Presentation: final.md
+      # - Next Steps: next_steps.md
+  - Download!: download.md
+extra:
+  generator: false
+  # logo: assets/img/avatar_me_plip.png
