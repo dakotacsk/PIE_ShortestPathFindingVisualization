@@ -1,18 +1,28 @@
 site_name: PathFinder
 theme:
-  name: simple-blog
+  # name: material
+  # name: simple-blog
+  name: terminal
+  palette: dark
+
 nav:
   - Home: index.md
   - Meet the Team: team.md
-  - Project Overview:
-      - Sprint 1: sprint1.md
-      - Sprint 2: sprint2.md
-      - Final Presentation: final.md
-      # - Next Steps: next_steps.md
+  - Project Overview: project.md
   - Download!: download.md
+
+plugins:
+  # - gallery:
+  #     examples_dirs: docs/examples # path to your example scripts
+  #     gallery_dirs: docs/generated/gallery # where to save generated gallery
+
+  - search # make sure the search plugin is still enabled
+
 markdown_extensions:
   - attr_list
   - md_in_html
+  - def_list
+
 extra:
   generator: false
   # logo: assets/img/avatar_me_plip.png
