@@ -44,7 +44,7 @@ class Grid:
             self.collected_rewards.add(position)  # Mark the reward as collected
             return 50  # Reward for stepping on a green block
         elif position in self.punishments:
-            return -50
+            return -150
         else:
             return -1  # Default move penalty
         

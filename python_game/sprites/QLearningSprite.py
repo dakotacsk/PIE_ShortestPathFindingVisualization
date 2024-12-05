@@ -2,8 +2,11 @@ import numpy as np
 import random
 import time
 import pygame
-from screens.oscillation_explanation import OscillationExplanation
+from screens.explanations.oscillation_explanation import OscillationExplanation
+from screens.explanations.many_steps_explanation import ManyStepsExplanation
+from screens.explanations.invalid_move_explanation import InvalidMoveExplanation
 from screens.ending_scene import EndingScene
+
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -12,7 +15,7 @@ BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
 
 class QLearningSprite:
-    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=5000, oscillation_callback=None, retry_callback=None, screen=None):
+    def __init__(self, start_position, cell_size, rows, cols, alpha=0.2, gamma=0.5, epsilon=0.9, max_steps=1000, oscillation_callback=None, retry_callback=None, screen=None):
         self.position = start_position
         self.cell_size = cell_size
         self.rows = rows
@@ -37,6 +40,7 @@ class QLearningSprite:
         self.screen = screen
         self.retry_callback = retry_callback
         self.oscillation_detected = False  # Flag to indicate if oscillation was detected
+        self.policy_steps = 0
 
     def add_message(self, message, is_step_message=False):
         if is_step_message:
@@ -90,7 +94,7 @@ class QLearningSprite:
                     continue
 
                 if grid.maze[new_row][new_col] == RED:
-                    self.q_table[state][action] += self.alpha * (-50 - self.q_table[state][action])
+                    self.q_table[state][action] += self.alpha * (-150 - self.q_table[state][action])
                     self.add_message(f"Moved onto a red block. Heavy penalty applied.")
                 
                 self.recent_positions.append(self.position[:])
@@ -121,6 +125,12 @@ class QLearningSprite:
             self.trigger_ending_screen()
             return
 
+        self.policy_steps = self.policy_steps+1
+        
+        if self.policy_steps >= 5:  # Detect when steps exceed 50 during policy following
+            self.trigger_many_steps_explanation()
+            return
+        
         state = self.position_to_state()
         action = np.argmax(self.q_table[state])  # Choose the action with the highest Q-value
 
@@ -137,7 +147,7 @@ class QLearningSprite:
         if 0 <= new_row < self.rows and 0 <= new_col < self.cols:
             self.previous_position = self.position[:]  # Store the previous position
             self.position = [new_row, new_col]  # Move to the new position
-
+            
             # Check for oscillation
             if len(self.recent_positions) > 2 and self.position in self.recent_positions[-2:]:
                 self.oscillation_count += 1
@@ -156,14 +166,16 @@ class QLearningSprite:
 
             self.add_message(f"Moved to new position: {self.position}")
         else:
+            # Invalid move detected during policy following
             self.add_message(f"Invalid move attempted from {self.position} with action {action}. Staying in place.")
             self.color = RED
+            self.trigger_invalid_move_explanation()  # Call the explanation screen for invalid moves
             time.sleep(1)  # Flash red for invalid moves during policy following
 
         time.sleep(0.5)
 
     def draw_q_values_on_grid(self, screen):
-        font = pygame.font.Font('./fonts/PressStart2P-Regular.ttf', 8)  # Retro font
+        font = pygame.font.Font('./fonts/PressStart2P-Regular.ttf', 12)  # Retro font
         offsets = [(0, -self.cell_size // 4), (self.cell_size // 4, 0), (0, self.cell_size // 4), (-self.cell_size // 4, 0)]  # Positions for up, right, down, left
 
         for row in range(self.rows):
@@ -234,4 +246,12 @@ class QLearningSprite:
 
     def trigger_oscillation_explanation(self):
         explanation_screen = OscillationExplanation(self.screen, self.retry_callback)
+        explanation_screen.run()  # Pass the retry callback when running
+
+    def trigger_many_steps_explanation(self):
+        explanation_screen = ManyStepsExplanation(self.screen, self.retry_callback)
+        explanation_screen.run() 
+
+    def trigger_invalid_move_explanation(self):
+        explanation_screen = InvalidMoveExplanation(self.screen, self.retry_callback)
         explanation_screen.run()  # Pass the retry callback when running

@@ -2,13 +2,13 @@ import pygame
 from grid.grid import Grid
 from sprites.DijkstraSprite import DijkstraSprite
 import time
-from screens.instructions2 import Instructions2
+from screens.instructions.instructions2 import Instructions2
 
 class Game1:
     def __init__(self, screen):
         self.screen = screen
-        self.grid = Grid(rows=5, cols=8, cell_size=100)  # Adjust as needed
-        self.sprite = DijkstraSprite(start_pos=[0, 0], cell_size=100, grid=self.grid)
+        self.grid = Grid(rows=3, cols=5, cell_size=160)  # Adjust as needed
+        self.sprite = DijkstraSprite(start_pos=[0, 0], cell_size=160, grid=self.grid)
         self.selected_position = [0, 0]  # Start at the first block
         self.blink = True
         self.blink_timer = pygame.time.get_ticks()

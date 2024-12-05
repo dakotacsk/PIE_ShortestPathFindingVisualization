@@ -1,6 +1,6 @@
 import pygame
 import sys
-from screens.credits_instructions import show_instructions
+from screens.instructions.credits_instructions import show_instructions
 
 class MainMenu:
     def __init__(self, screen):

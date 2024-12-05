@@ -1,7 +1,7 @@
 import pygame
 from screens.main_menu import MainMenu
 from screens.intro_cutscene import IntroCutscene
-from screens.instructions import Instructions
+from screens.instructions.instructions import Instructions
 from screens.game1 import Game1
 from screens.game2 import Game2
 

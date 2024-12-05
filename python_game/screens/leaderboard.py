@@ -5,7 +5,7 @@ from screens.main_menu import MainMenu
 import sys
 
 class Leaderboard:
-    def __init__(self, screen, restart_callback, csv_filename="leaderboard.csv"):
+    def __init__(self, screen, restart_callback, csv_filename="../leaderboard/leaderboard.csv"):
         self.screen = screen
         self.restart_callback = restart_callback
         self.csv_filename = csv_filename
