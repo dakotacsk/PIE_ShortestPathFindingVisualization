@@ -15,8 +15,10 @@ class Game2:
         self.init_game()
 
     def retry_game(self):
+        self.show_max_steps_selection = True  # Show the max steps selection screen again
         self.init_game()
         self.run()
+
 
     def init_game(self):
         self.grid = Grid(rows=3, cols=5, cell_size=160)  # Adjust as needed
