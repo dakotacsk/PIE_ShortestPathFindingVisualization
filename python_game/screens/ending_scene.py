@@ -1,7 +1,7 @@
 import pygame
 import sys
-from screens.scrolling_texts import ScrollingTextDisplay 
-from screens.leaderboard import Leaderboard 
+from screens.scrolling_texts import ScrollingTextDisplay
+from screens.leaderboard import Leaderboard
 
 class EndingScene(ScrollingTextDisplay):
     def __init__(self, screen, retry_callback, user_score):
@@ -15,7 +15,7 @@ class EndingScene(ScrollingTextDisplay):
         super().__init__(screen, "Ending Screen", explanation_text, font_size=16)
         self.retry_callback = retry_callback
         self.user_score = user_score
-        self.leaderboard = Leaderboard(screen, retry_callback, user_score)
+        self.leaderboard = Leaderboard(screen, retry_callback, csv_filename="../python_game/leaderboard/leaderboard.csv")
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -28,7 +28,7 @@ class EndingScene(ScrollingTextDisplay):
                     return False  # Stop running
                 elif event.key == pygame.K_SPACE:  # Save score and go to the leaderboard when Space is pressed
                     self.leaderboard.save_score(self.user_score)  # Save the score to the leaderboard
-                    self.leaderboard.run()  # Display the leaderboard
+                    self.leaderboard.run(self.user_score)  # Display the leaderboard with the new score highlighted
                     return False  # Stop running
                 elif event.key == pygame.K_UP:
                     self.key_up_pressed = True  # Trigger scroll up
