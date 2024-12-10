@@ -5,6 +5,8 @@ from screens.scrolling_texts import ScrollingTextDisplay  # Assuming the base cl
 class ManyStepsExplanation(ScrollingTextDisplay):
     def __init__(self, screen, retry_callback):
         explanation_text = [
+            "Oops! Your turtle spent too much time walking and didn't make it in time!",
+            "",
             "Taking many steps in Q-Learning can indicate challenges in the",
             "learning process or environmental setup.",
             "",

@@ -5,7 +5,9 @@ from screens.scrolling_texts import ScrollingTextDisplay  # Assuming the base cl
 class OscillationExplanation(ScrollingTextDisplay):
     def __init__(self, screen, retry_callback):
         explanation_text = [
-            "Oscillation in Q-Learning occurs when an agent repeatedly revisits",
+            "Oops! Your turtle got lost and kept going back and forth in the same area!",
+            "",
+            "Oscillation in Q-Learning occurs when an turtle repeatedly revisits",
             "the same states without making meaningful progress towards a goal.",
             "",
             "This behavior can result from:",
