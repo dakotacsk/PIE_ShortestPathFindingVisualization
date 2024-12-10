@@ -5,20 +5,20 @@ from screens.scrolling_texts import ScrollingTextDisplay  # Assuming the base cl
 class InvalidMoveExplanation(ScrollingTextDisplay):
     def __init__(self, screen, retry_callback):
         explanation_text = [
-            "An invalid move occurs when the deer tries to move outside the",
-            "grid boundaries or into an inaccessible area.",
+            "An invalid move occurs when the hatchling tries to move outside the",
+            "beach or into an area with a ghost crab.",
             "",
             "Possible reasons for invalid moves:",
             "- The Q-Learning policy suggests an action that leads out of bounds.",
-            "- The deer hasn't learned the environment layout properly yet.",
+            "- The hatchling hasn't learned the environment layout properly yet.",
             "",
             "Suggestions to avoid invalid moves:",
             "- Ensure the environment boundaries are clearly defined.",
             "- Provide penalties for invalid moves during training to discourage",
             "  such actions.",
-            "- Increase training iterations to allow the deer to learn valid paths.",
+            "- Increase training iterations to allow the hatchling to learn valid paths.",
             "",
-            "Invalid moves result in wasted steps and can prevent the deer",
+            "Invalid moves result in wasted steps and can prevent the hatchling",
             "from reaching its goal efficiently.",
             "",
             "Press Enter to retry."

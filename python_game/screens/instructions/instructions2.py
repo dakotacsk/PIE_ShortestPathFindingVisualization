@@ -6,13 +6,15 @@ class Instructions2(ScrollingTextDisplay):
     def __init__(self, screen):
         instructions_content = [
             "Gameplay - Q-Learning Arena:",
-            "Objective: Adapt to changing paths and maximize rewards using the Q-learning table.",
+            "Objective: Create an environment on this beach that gets the hatchling to the end in the least ammount of moves.",
+            "Bonus points are awarded for using fewer rewards and obstacles to guide the turtle to the ocean (bottom right square).",
             "The Q-learning table is displayed with four numbers representing potential values for up, down, left, and right directions.",
-            "Controls: Use arrow keys to move the Sprite through the grid.",
-            "Mechanics: The more steps the Sprite takes, the more punishments it accumulates.",
-            "Note: Sprite has a limited number of steps before it 'runs out of gas' (game over).",
-            "Green blocks give negative points (punishments), while red blocks grant positive points (rewards).",
-            "Your goal is to find the optimal path that minimizes punishment and maximizes reward.",
+            "",
+            "Controls: Use arrow buttons to navigate the beach and use the green button to create rewards and punishments.",
+            "Once you are happy with the beach you created, press the red button.",
+            "",
+            "Mechanics: The hatchling has a limited number of steps before it runs out of motivation.",
+            "In order to keep the hatchlings spirits up, it needs to reach one of the artifical light sources created to guide it to it's final destination."
             ""
         ]
         super().__init__(screen, "Instructions Gameplay", instructions_content, font_size=20)

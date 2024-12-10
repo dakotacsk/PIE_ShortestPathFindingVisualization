@@ -6,13 +6,18 @@ class Instructions(ScrollingTextDisplay):
     def __init__(self, screen):
         instructions_content = [
             "Tutorial Level - Dijkstra's Maze:",
-            "Objective: Sprite wants to move from the left corner of the grid to the right lowest corner.",
-            "You are in charge of creating a ****for Sprite to walk through.",
-            "You can place ****, which Sprite loves and will walk to, or",
-            "you can place ****, which Sprite hates and refuse to walk on.",
-            "Controls: Use arrow keys to move the black box. Click the green button once to place a **** (red block),",
-            "click the green button again to place a **** (green block), ",
-            "click the green button once more to revert it to normal. ",
+            "Objective: A baby turtle just hatched, and needs to get to the ocean and start a life for itself!",
+            "You are in charge of creating a unique beach for a turtle hatchling to walk through on it's way to the ocean.",
+            "You can place light sources, which mimic the light from the moon reflecting onto the surface of the ocean.",
+            "Turtle hatchlings use the light from the moon as a natural compass that leads them to the Ocean.",
+            "Artificial lights created by humans can confuse turtles, and cause them to walk in circles, or away from the "
+            "ocean entirely when they first hatch.",
+            "You can place ghost crabs, which are one of these hatchlings' natural predators.",
+            "The hatchling will do everything in its power to avoid these pesky guys.",
+            "",
+            "Controls: Use arrow keys to move the black box. Click the green button once to place a ghost crab (red block), "
+            "click the green button again to place a light source (green block), "
+            "click the green button once more to revert it to an empty square. ",
             "Have fun!",
             ""
         ]

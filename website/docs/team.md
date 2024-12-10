@@ -32,7 +32,7 @@ Khoi bridges the gap between mechanical and software components, creating real-t
 
 ## **Chris**
 
-![Chris' Picture](assets/img/khoi.jpeg){style="height: 20vh; width: auto; display: block; margin: 0 auto; object-fit: contain;" }
+![Chris' Picture](assets/img/chris.jpeg){style="height: 20vh; width: auto; display: block; margin: 0 auto; object-fit: contain;" }
 
 **Role**: Mechanical, Electrical, and Software Design Integration  
 Chris excels at integrating mechanical, electrical, and software designs into cohesive, functional systems inspired by 1980s arcade machines.
