@@ -78,4 +78,12 @@ class DijkstraSprite:
     def draw(self, screen):
         x, y = self.position[1] * self.cell_size + self.cell_size // 2, self.position[0] * self.cell_size + self.cell_size // 2
         color = YELLOW if self.reached_goal else BLACK  # Change color to yellow if goal is reached
-        pygame.draw.circle(screen, color, (x, y), self.cell_size // 3)
+        # Load the image
+        image = pygame.image.load('./images/cuteturtle.png')
+
+        # Optionally, scale the image to match the circle's radius
+        image = pygame.transform.scale(image, (self.cell_size // 3 * 2, self.cell_size // 3 * 2))
+
+        # Draw the image at position (x, y)
+        screen.blit(image, (x - image.get_width() // 2, y - image.get_height() // 2))
+

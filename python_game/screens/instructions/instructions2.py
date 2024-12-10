@@ -14,7 +14,7 @@ class Instructions2(ScrollingTextDisplay):
             "Once you are happy with the beach you created, press the red button.",
             "",
             "Mechanics: The hatchling has a limited number of steps before it runs out of motivation.",
-            "In order to keep the hatchlings spirits up, it needs to reach one of the artifical light sources created to guide it to it's final destination."
+            "Everytime the hatchling reaches a light source on the way to the ocean, its spirits get lifted and the number of steps it can take increases."
             ""
         ]
         super().__init__(screen, "Instructions Gameplay", instructions_content, font_size=20)
