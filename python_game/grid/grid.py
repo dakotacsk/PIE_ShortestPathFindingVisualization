@@ -4,13 +4,15 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+YELLOW = (240, 230, 140)
+
 
 class Grid:
     def __init__(self, rows, cols, cell_size):
         self.rows = rows
         self.cols = cols
         self.cell_size = cell_size
-        self.maze = [[WHITE] * cols for _ in range(rows)]
+        self.maze = [[YELLOW] * cols for _ in range(rows)]
         self.rewards = set()  # Set of reward positions
         self.punishments = set()  # Set of punishment positions
         self.collected_rewards = set()  # Track collected rewards
@@ -20,7 +22,7 @@ class Grid:
         # Use floor division to ensure row and col are integers
         row, col = pos[1] // self.cell_size, pos[0] // self.cell_size
         row, col = int(row), int(col)  # Explicitly cast to int for safety
-        
+
         # Toggle cell color/state between reward, punishment, and default
         if (row, col) in self.rewards:
             self.rewards.remove((row, col))
@@ -28,7 +30,7 @@ class Grid:
             self.maze[row][col] = RED
         elif (row, col) in self.punishments:
             self.punishments.remove((row, col))
-            self.maze[row][col] = WHITE
+            self.maze[row][col] = YELLOW
         else:
             self.rewards.add((row, col))
             self.maze[row][col] = GREEN
@@ -47,16 +49,21 @@ class Grid:
             return -150
         else:
             return -1  # Default move penalty
-        
+
     def reset_rewards_and_punishments(self):
         self.rewards.clear()
         self.punishments.clear()
         self.collected_rewards.clear()  # Clear collected rewards
-        self.maze = [[WHITE] * self.cols for _ in range(self.rows)]
+        self.maze = [[YELLOW] * self.cols for _ in range(self.rows)]
 
     def draw(self, screen):
         for row in range(self.rows):
             for col in range(self.cols):
-                rect = pygame.Rect(col * self.cell_size, row * self.cell_size, self.cell_size, self.cell_size)
+                rect = pygame.Rect(
+                    col * self.cell_size,
+                    row * self.cell_size,
+                    self.cell_size,
+                    self.cell_size,
+                )
                 pygame.draw.rect(screen, self.maze[row][col], rect)
                 # pygame.draw.rect(screen, BLACK, rect, 1)  # Border

@@ -4,6 +4,7 @@ from sprites.DijkstraSprite import DijkstraSprite
 import time
 from screens.instructions.instructions2 import Instructions2
 
+
 class Game1:
     def __init__(self, screen):
         self.screen = screen
@@ -12,7 +13,9 @@ class Game1:
         self.selected_position = [0, 0]  # Start at the first block
         self.blink = True
         self.blink_timer = pygame.time.get_ticks()
-        self.blink_interval = 500  # Milliseconds (1 second) - Increase to slow down blinking
+        self.blink_interval = (
+            500  # Milliseconds (1 second) - Increase to slow down blinking
+        )
         self.running = True
         self.pathfinding_started = False  # Flag to control when pathfinding starts
 
@@ -36,26 +39,40 @@ class Game1:
             elif event.type == pygame.KEYDOWN:
                 if not self.pathfinding_started:
                     if event.key == pygame.K_LEFT:
-                        self.selected_position[1] = max(0, self.selected_position[1] - 1)  # Move left
+                        self.selected_position[1] = max(
+                            0, self.selected_position[1] - 1
+                        )  # Move left
                     elif event.key == pygame.K_RIGHT:
-                        self.selected_position[1] = min(self.grid.cols - 1, self.selected_position[1] + 1)  # Move right
+                        self.selected_position[1] = min(
+                            self.grid.cols - 1, self.selected_position[1] + 1
+                        )  # Move right
                     elif event.key == pygame.K_UP:
-                        self.selected_position[0] = max(0, self.selected_position[0] - 1)  # Move up
+                        self.selected_position[0] = max(
+                            0, self.selected_position[0] - 1
+                        )  # Move up
                     elif event.key == pygame.K_DOWN:
-                        self.selected_position[0] = min(self.grid.rows - 1, self.selected_position[0] + 1)  # Move down
+                        self.selected_position[0] = min(
+                            self.grid.rows - 1, self.selected_position[0] + 1
+                        )  # Move down
                     elif event.key == pygame.K_SPACE:
                         # Toggle cell color logic
-                        current_color = self.grid.maze[self.selected_position[0]][self.selected_position[1]]
-                        if current_color == (255, 255, 255):  # White (normal)
+                        current_color = self.grid.maze[self.selected_position[0]][
+                            self.selected_position[1]
+                        ]
+                        if current_color == (240, 230, 140):  # Yellow (normal)
                             new_color = (255, 0, 0)  # Red (wall/penalty)
                         elif current_color == (255, 0, 0):  # Red (wall/penalty)
                             new_color = (0, 255, 0)  # Green (reward)
                         else:
-                            new_color = (255, 255, 255)  # Back to white
-                        self.grid.maze[self.selected_position[0]][self.selected_position[1]] = new_color
+                            new_color = (240, 230, 140)  # Back to yellow
+                        self.grid.maze[self.selected_position[0]][
+                            self.selected_position[1]
+                        ] = new_color
                 if event.key == pygame.K_RETURN:
                     # Start pathfinding when Enter is pressed
-                    self.sprite.set_path([0, 0], [self.grid.rows - 1, self.grid.cols - 1])
+                    self.sprite.set_path(
+                        [0, 0], [self.grid.rows - 1, self.grid.cols - 1]
+                    )
                     self.pathfinding_started = True
 
     def update(self):
@@ -74,7 +91,12 @@ class Game1:
         if not self.pathfinding_started and self.blink:
             x = self.selected_position[1] * self.grid.cell_size
             y = self.selected_position[0] * self.grid.cell_size
-            pygame.draw.rect(self.screen, (0, 0, 0), (x, y, self.grid.cell_size, self.grid.cell_size), 3)
+            pygame.draw.rect(
+                self.screen,
+                (0, 0, 0),
+                (x, y, self.grid.cell_size, self.grid.cell_size),
+                3,
+            )
         self.sprite.draw(self.screen)
         pygame.display.flip()
 
