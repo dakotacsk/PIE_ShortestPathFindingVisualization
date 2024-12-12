@@ -22,12 +22,12 @@ class Game2:
         self.run()
 
     def init_game(self):
-        self.grid = Grid(rows=3, cols=5, cell_size=160)  # Adjust as needed
+        self.grid = Grid(rows=5, cols=8, cell_size=240)  # Adjust as needed
         self.sprite = QLearningSprite(
             start_position=[0, 0],
-            cell_size=160,
-            rows=3,
-            cols=5,
+            cell_size=240,
+            rows=5,
+            cols=8,
             max_steps=1000,  # Default value, will be updated after selection
             screen=self.screen,
             retry_callback=self.retry_game,

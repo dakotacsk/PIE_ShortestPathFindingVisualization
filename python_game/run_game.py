@@ -7,8 +7,8 @@ from screens.game2 import Game2
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))  # Adjust screen size as needed
-    pygame.display.set_caption("Sprite's Quest: Pathfinding Trials")
+    screen = pygame.display.set_mode((1920, 1080))  # Adjust screen size as needed
+    pygame.display.set_caption("Hatchling's Quest: Pathfinding Trials")
     
     # Main menu screen
     menu = MainMenu(screen)
