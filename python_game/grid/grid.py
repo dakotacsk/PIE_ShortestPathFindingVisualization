@@ -5,6 +5,7 @@ GREEN = (0, 255, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 YELLOW = (240, 230, 140)
+BLUE = (30, 144, 255)
 
 
 class Grid:
@@ -13,10 +14,12 @@ class Grid:
         self.cols = cols
         self.cell_size = cell_size
         self.maze = [[YELLOW] * cols for _ in range(rows)]
+        self.maze[rows - 1][cols - 1] = BLUE
         self.rewards = set()  # Set of reward positions
         self.punishments = set()  # Set of punishment positions
         self.collected_rewards = set()  # Track collected rewards
         self.goal_position = (rows - 1, cols - 1)  # Define goal as bottom-right corner
+        self.maze[rows - 1][cols - 1] = BLUE
 
     def toggle_cell(self, pos):
         # Use floor division to ensure row and col are integers
