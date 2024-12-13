@@ -86,4 +86,3 @@ class DijkstraSprite:
 
         # Draw the image at position (x, y)
         screen.blit(image, (x - image.get_width() // 2, y - image.get_height() // 2))
-

@@ -8,7 +8,7 @@ from screens.explanations.many_steps_explanation import ManyStepsExplanation
 class Game2:
     def __init__(self, screen):
         self.screen = screen
-        self.max_steps_options = [10, 500, 1000]  # Options for max steps
+        self.max_steps_options = [10, 500, 1000, 5000]  # Options for max steps
         self.selected_option_index = 0  # Default to the first option
         self.running = True  # Track game state
         self.show_max_steps_selection = True  # Flag to show max steps selection screen
