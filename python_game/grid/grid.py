@@ -21,6 +21,10 @@ class Grid:
         self.goal_position = (rows - 1, cols - 1)  # Define goal as bottom-right corner
         self.maze[rows - 1][cols - 1] = BLUE
 
+    def reset(self):
+        """Resets the grid to its initial state."""
+        self.maze = [[(240, 230, 140) for _ in range(self.cols)] for _ in range(self.rows)]  # Default yellow grid
+
     def toggle_cell(self, pos):
         # Use floor division to ensure row and col are integers
         row, col = pos[1] // self.cell_size, pos[0] // self.cell_size
@@ -44,7 +48,7 @@ class Grid:
     def get_reward(self, position):
         position = tuple(position)  # Convert list to tuple
         if position == self.goal_position:
-            return 150  # High reward for reaching the goal
+            return 50  # Lowered reward for reaching the goal
         elif position in self.rewards:
             self.collected_rewards.add(position)  # Mark the reward as collected
             return 50  # Reward for stepping on a green block

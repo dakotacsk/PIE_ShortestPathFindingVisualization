@@ -7,9 +7,9 @@ class EndingScene(ScrollingTextDisplay):
     def __init__(self, screen, retry_callback, user_score):
         explanation_text = [
             "Congratulations for finishing the game!",
-            f"Your score is: {user_score}",
-            "Press Space to save your score and go to the leaderboard!",
+            f"Your in-game score is: {user_score}",
             "",
+            "Press Space to save your in-game score and go to the leaderboard!",
             "Press Enter to retry training the model."
         ]
         super().__init__(screen, "Ending Screen", explanation_text, font_size=16)

@@ -35,7 +35,8 @@ class QLearningSprite:
         self.retry_callback = retry_callback
         self.policy_steps = 0
         self.screen = screen
-        self.score = 2000  # Initialize score
+        self.score = 0  # Initialize score
+        self.user_score = 5000
 
         # Load images for the sprite states
         self.images = {
@@ -68,17 +69,14 @@ class QLearningSprite:
     def position_to_state(self):
         return self.position[0] * self.cols + self.position[1]
 
-    def modify_score_for_grid_update(self, grid, position, new_color):
-        """Update score based on grid modifications."""
-        if grid.maze[position[0]][position[1]] == RED:  # Replacing a punishment block
-            self.score += 20
-        elif grid.maze[position[0]][position[1]] == (0, 255, 0):  # Replacing a reward block
-            self.score += 10
+    def calculate_final_score(self, grid):
+        """Calculate the final score based on green and red blocks in the grid."""
+        green_count = sum(row.count((0, 255, 0)) for row in grid.maze)  # Count green blocks
+        red_count = sum(row.count((255, 0, 0)) for row in grid.maze)    # Count red blocks
 
-        if new_color == RED:  # Adding a punishment block
-            self.score -= 20
-        elif new_color == (0, 255, 0):  # Adding a reward block
-            self.score -= 10
+        final_score = self.user_score - green_count * 150 - red_count * 100 - self.max_steps/10  # Example scoring logic
+        self.add_message(f"Final Score: {final_score} (Green: {green_count}, Red: {red_count}, Max Steps: {self.max_steps})")
+        return final_score
 
     def select_action(self, state):
         return random.randint(0, 3) if random.random() < self.epsilon else np.argmax(self.q_table[state])
@@ -128,7 +126,7 @@ class QLearningSprite:
 
         reward = grid.get_reward(self.position)
         if self.position == self.goal_position:
-            self.score += 500  # Add 500 points for reaching the goal
+            self.score += 50  # Add 50 points for reaching the goal
             self.state = "caught"
         else:
             self.state = "normal"
@@ -143,7 +141,7 @@ class QLearningSprite:
             self.state = "caught"  # Replace YELLOW with 'caught' state
             self.add_message("Goal reached during policy following.")
             time.sleep(2)
-            self.trigger_ending_screen()
+            self.trigger_ending_screen(grid)  # Pass the grid to calculate the final score
             return
 
         self.policy_steps += 1
@@ -252,9 +250,13 @@ class QLearningSprite:
         self.draw_q_values_on_grid(screen)
         self.draw_message(screen)
 
-    def trigger_ending_screen(self):
-        ending_screen = EndingScene(self.screen, self.retry_callback, user_score=100)
+    def trigger_ending_screen(self, grid):
+        """Trigger the ending screen and display the final grid-based score."""
+        final_score = self.calculate_final_score(grid)  # Calculate the final score
+        # Pass the final score along with self.score to the ending screen
+        ending_screen = EndingScene(self.screen, self.retry_callback, user_score=final_score)
         ending_screen.run()
+
 
     def trigger_oscillation_explanation(self):
         explanation_screen = OscillationExplanation(self.screen, self.retry_callback)
