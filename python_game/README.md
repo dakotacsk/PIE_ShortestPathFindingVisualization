@@ -1,5 +1,3 @@
-Here's the updated README with the **flow map image** included:
-
 ---
 
 # Hatchling's Quest: Pathfinding Trials
