@@ -164,9 +164,9 @@ python_game/
 
 1. **Install Dependencies**:
 
-   - Ensure Python 3.8+ and `pygame` are installed:
+   - Ensure Python 3.8+ and required libraries are installed:
      ```bash
-     pip install pygame
+     pip install -r requirements.txt
      ```
 
 2. **Run the Game**:
