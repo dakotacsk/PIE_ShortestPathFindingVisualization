@@ -73,7 +73,7 @@ This project is designed for:
 
 ## Flow Map
 
-![Game Flow Map](website/docs/assets/img/pathfinders_flow.png)
+![pathfinders_flow](https://github.com/user-attachments/assets/52c6363c-0825-46ff-b6ea-436a00d26077)
 
 This flow map outlines the logical structure of the game, including transitions between levels, explanations, and key algorithms like Dijkstra's and Q-Learning.
 
