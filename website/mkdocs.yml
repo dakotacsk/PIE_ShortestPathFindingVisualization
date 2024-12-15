@@ -8,7 +8,10 @@ theme:
 nav:
   - Home: index.md
   - Meet the Team: team.md
-  - Project Overview: project.md
+  - Project:
+      - Overview: project/project.md
+      - Mechanical: project/meche.md
+      - Software & Firmware: project/software_firmware.md
   - Download!: download.md
 
 plugins:
@@ -22,6 +25,9 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - def_list
+  - toc:
+      baselevel: "1"
+      toc_depth: "3"
 
 extra:
   generator: false

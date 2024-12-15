@@ -68,63 +68,6 @@ _Figure: Circuit schematic showing connections between components._
 
 ---
 
-### Mechanical Design
-
-Describe the mechanical structure of the system, materials used, and analysis.
-
-**PLACEHOLDER**: Add mechanical design description.
-
-- Describe materials (e.g., MDF, PLA) and fabrication process.
-- Include CAD images or hand-drawn designs as applicable.
-
-**Example**:  
-![CAD Rendering](PLACEHOLDER)  
-_Figure: CAD rendering of the arcade machine._
-
----
-
-## **Software and Firmware Design**
-
-### Software Design
-
-Provide details on the software architecture, key modules, and external dependencies.
-
-**PLACEHOLDER**: Add software architecture and description.
-
-- Include pathfinding logic (Dijkstra's Algorithm and Q-Learning).
-- Describe dependencies such as Pygame, NumPy, or OpenCV.
-
-**Flow Diagram for Game**:  
-![Software UML Diagram](assets/img/pathfinders_flow.png)  
-_Figure: Flow diagram representing game architecture and flow._
-
-**Link to Source Code**:  
-[PLACEHOLDER: GitHub Repo Link](#)
-
----
-
-### Firmware Design
-
-Provide details on the firmware (e.g., Arduino logic), including tasks like LED control or input handling.
-
-**PLACEHOLDER**: Add firmware design description.
-
-**Example Snippet**:
-
-```cpp
-// Placeholder: LED Button Control Logic
-if (buttonPressed) {
-    digitalWrite(LED_PIN, HIGH);
-} else {
-    digitalWrite(LED_PIN, LOW);
-}
-```
-
-**Link to Source Code**:  
-[PLACEHOLDER: Firmware Repo Link](#)
-
----
-
 ## **Diagrams**
 
 ### Data and Energy Flow Diagram
@@ -134,7 +77,7 @@ Insert a high-level diagram showing how energy and data move through the system.
 **PLACEHOLDER**: Add data and energy flow diagram.
 
 **Example**:  
-![Energy Flow Diagram](assets/img/energy_flow.png)  
+![Energy Flow Diagram](../assets/img/energy_flow.png)  
 _Figure: Data and energy flow in the arcade system._
 
 ---
