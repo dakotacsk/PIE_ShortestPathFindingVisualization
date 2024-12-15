@@ -18,8 +18,10 @@ class MainMenu:
     def run(self):
         running = True
         clock = pygame.time.Clock()
+        user_choice = None  # Default
+
         while running:
-            self.screen.fill((0, 0, 0))  # Black background
+            self.screen.fill((0, 0, 0))
             self.display_logo()
             self.display_menu()
             pygame.display.flip()
@@ -28,25 +30,30 @@ class MainMenu:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                if event.type == pygame.KEYDOWN:
+                elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
                         self.selected_index = (self.selected_index + 1) % len(self.options)
                     elif event.key == pygame.K_UP:
                         self.selected_index = (self.selected_index - 1) % len(self.options)
                     elif event.key == pygame.K_RETURN:
-                        if self.options[self.selected_index] == "Start Game":
-                            running = False  # Proceed to next screen
-                        elif self.options[self.selected_index] == "Instruction & Credits":
-                            show_instructions(self.screen, self.run)  # Pass self.run as the callback to return to menu
-                        elif self.options[self.selected_index] == "Exit Game":
+                        chosen_option = self.options[self.selected_index]
+                        if chosen_option == "Start Game":
+                            user_choice = "start"
+                            running = False
+                        elif chosen_option == "Instruction & Credits":
+                            show_instructions(self.screen, self.run)
+                        elif chosen_option == "Exit Game":
+                            user_choice = "exit"
                             pygame.quit()
                             sys.exit()
 
-            # Update the blinking logo timer
             self.blinking_logo_timer += clock.tick(60)
-            if self.blinking_logo_timer > 500:  # Toggle visibility every 500 ms
+            if self.blinking_logo_timer > 500:
                 self.blinking_logo_visible = not self.blinking_logo_visible
                 self.blinking_logo_timer = 0
+
+        return user_choice  # Return the user's choice
+
 
     def display_logo(self):
         if self.blinking_logo_visible:

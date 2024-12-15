@@ -4,7 +4,7 @@ from screens.scrolling_texts import ScrollingTextDisplay
 from screens.leaderboard import Leaderboard
 
 class EndingScene(ScrollingTextDisplay):
-    def __init__(self, screen, retry_callback, user_score):
+    def __init__(self, screen, retry_callback, main_menu_callback, user_score):
         explanation_text = [
             "Congratulations for finishing the game!",
             f"Your in-game score is: {user_score}",
@@ -13,6 +13,7 @@ class EndingScene(ScrollingTextDisplay):
             "Press Enter to retry training the model."
         ]
         super().__init__(screen, "Ending Screen", explanation_text, font_size=16)
+        self.main_menu_callback = main_menu_callback  # Add main menu callback
         self.retry_callback = retry_callback
         self.user_score = user_score
         self.leaderboard = Leaderboard(screen, retry_callback, csv_filename="../python_game/leaderboard/leaderboard.csv")
@@ -30,6 +31,9 @@ class EndingScene(ScrollingTextDisplay):
                     self.leaderboard.save_score(self.user_score)  # Save the score to the leaderboard
                     self.leaderboard.run(self.user_score)  # Display the leaderboard with the new score highlighted
                     return False  # Stop running
+                elif event.key == pygame.K_m:  # Return to main menu
+                    self.main_menu_callback()  # Trigger main menu
+                    return False  # Stop running
                 elif event.key == pygame.K_UP:
                     self.key_up_pressed = True  # Trigger scroll up
                 elif event.key == pygame.K_DOWN:
@@ -40,7 +44,7 @@ class EndingScene(ScrollingTextDisplay):
                 elif event.key == pygame.K_DOWN:
                     self.key_down_pressed = False  # Stop scroll down
         return True
-
+        
     def run(self):
         running = True
         while running:

@@ -22,8 +22,18 @@ class Grid:
         self.maze[rows - 1][cols - 1] = BLUE
 
     def reset(self):
-        """Resets the grid to its initial state."""
-        self.maze = [[(240, 230, 140) for _ in range(self.cols)] for _ in range(self.rows)]  # Default yellow grid
+        """Resets the entire grid to its initial, default state."""
+        # Clear all sets
+        self.rewards.clear()
+        self.punishments.clear()
+        self.collected_rewards.clear()
+
+        # Rebuild the maze in default colors
+        self.maze = [[YELLOW for _ in range(self.cols)] for _ in range(self.rows)]
+
+        # Re-establish the goal in the bottom-right cell
+        self.goal_position = (self.rows - 1, self.cols - 1)
+        self.maze[self.goal_position[0]][self.goal_position[1]] = BLUE
 
     def toggle_cell(self, pos):
         # Use floor division to ensure row and col are integers

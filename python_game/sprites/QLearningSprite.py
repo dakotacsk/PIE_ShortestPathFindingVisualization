@@ -251,10 +251,11 @@ class QLearningSprite:
         self.draw_message(screen)
 
     def trigger_ending_screen(self, grid):
-        """Trigger the ending screen and display the final grid-based score."""
-        final_score = self.calculate_final_score(grid)  # Calculate the final score
-        # Pass the final score along with self.score to the ending screen
-        ending_screen = EndingScene(self.screen, self.retry_callback, user_score=final_score)
+        """Trigger the ending screen and display the final score."""    
+        final_score = self.calculate_final_score(grid)
+        from screens.main_menu import MainMenu  # Import MainMenu if not already imported
+        main_menu_callback = lambda: MainMenu(self.screen).run()  # Define main menu callback
+        ending_screen = EndingScene(self.screen, self.retry_callback, main_menu_callback, user_score=final_score)
         ending_screen.run()
 
 
