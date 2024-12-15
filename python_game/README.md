@@ -1,5 +1,3 @@
----
-
 # Hatchling's Quest: Pathfinding Trials
 
 ## Table of Contents
@@ -207,5 +205,3 @@ A dedicated website will be built to showcase the game and its educational benef
 - Add more levels with advanced pathfinding algorithms.
 - Incorporate an online mode for collaborative gameplay.
 - Build a mobile-friendly version for wider accessibility.
-
----
