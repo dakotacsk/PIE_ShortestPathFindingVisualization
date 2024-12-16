@@ -10,7 +10,7 @@ nav:
   - Meet the Team: team.md
   - Project:
       - Overview: project/project.md
-      - Mechanical: project/meche.md
+      - Mechanical: project/meche_ece.md
       - Software & Firmware: project/software_firmware.md
   - Download!: download.md
 
