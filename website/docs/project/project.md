@@ -4,9 +4,10 @@
 
 1. [Budget and Components](#budget-and-components)
 2. [Media](#media)
-3. [Electrical and Mechanical Design](#electrical-and-mechanical-design)
-4. [Software and Firmware Design](#software-and-firmware-design)
-5. [Diagrams](#diagrams)
+3. [Mechanical Design](#mechanical-design)
+4. [Electrical and Firmware Design](#electrical-and-firmware-design)
+5. [Software Design](#software-design)
+6. [Energy Flow & System Diagrams](#diagrams)
 
 ---
 
@@ -51,9 +52,36 @@ Link to a video demo of the project.
 
 ---
 
-## **Electrical and Mechanical Design**
+## **Final Designs**
 
-### Electrical Design
+### **Mechanical Design**
+
+Provide a detailed description of the mechanical design, including materials, construction methods, and analysis.
+
+**PLACEHOLDER**: Add description of mechanical components.
+
+- **Include details on the design process, materials used, and fabrication methods.**
+- **Describe any stress testing, simulations, or structural analysis performed.**
+- Replace this placeholder with relevant CAD images, renderings, or diagrams if available.
+
+**Example**:  
+![CAD Rendering](PLACEHOLDER)  
+_Figure: CAD rendering showing the structure and layout of the arcade machine._
+
+**Design Highlights**:
+
+- **Materials**: Specify materials used (e.g., MDF, 3D-printed PLA, aluminum) and their purpose.
+- **Fabrication Methods**: Describe how parts were cut, assembled, and finished (e.g., laser cutting, 3D printing, spray painting).
+- **Modularity**: Explain how the design allows for future upgrades or ease of assembly.
+
+**Analysis**:
+
+- **Structural Analysis**: Summarize results from stress tests or simulations to verify durability.
+- **User Interaction**: Describe ergonomic considerations, such as button placement, screen height, and accessibility.
+
+---
+
+### Electrical and Firmware Design
 
 Provide a description of the electrical system, including connections, power requirements, and analysis.
 
@@ -65,6 +93,69 @@ Provide a description of the electrical system, including connections, power req
 **Example**:  
 ![Electronics Schematic](PLACEHOLDER)  
 _Figure: Circuit schematic showing connections between components._
+
+---
+
+### Software Design
+
+The software for **Hatchling's Quest: Pathfinding Trials** is designed to deliver an intuitive, engaging, and educational gaming experience while visualizing pathfinding algorithms in action.
+
+#### **Software Architecture**
+
+### Software Structure and Key Modules
+
+#### Overview:
+
+The software is divided into three main areas:
+
+- **Game Interface**: Handles the GUI, animations, and user input using **Pygame**.
+- **Pathfinding Algorithms**:
+  - **Dijkstra's Algorithm** (Level 1): Computes shortest paths.
+  - **Q-Learning** (Level 2): Enables reward-based navigation.
+- **Game Logic**: Manages screens, game states, and leaderboards.
+
+#### Key Modules:
+
+- **`run_game.py`**: Coordinates game flow.
+- **`grid/grid.py`**: Defines the pathfinding grid.
+- **Pathfinding Modules**:
+  - **`sprites/DijkstraSprite.py`**: Implements Dijkstra’s Algorithm.
+  - **`sprites/QLearningSprite.py`**: Implements Q-Learning.
+- **Screens**: Main menu, instructions, and interactive gameplay feedback.
+- **Leaderboard**: Tracks and displays high scores via **`leaderboard/leaderboard.py`**.
+
+#### **Dependencies**
+
+The software relies on the following external libraries:
+
+- **Python 3.11.7**: Core language used for development.
+- **NumPy (2.2.0)**: Used for matrix operations in Q-Learning, including Q-table computations.
+- **Pygame (2.6.1)**: Provides the framework for rendering the game interface and managing user input.
+
+---
+
+#### **Flow Diagram for Game**
+
+The following flow diagram illustrates the architecture and flow of the game, showing transitions between levels, screens, and algorithms:
+
+![Flow Diagram](../assets/img/pathfinders_flow.png)  
+_Figure: Flow diagram representing game architecture and flow._
+
+---
+
+#### **UML Diagram**
+
+The UML diagram below showcases the architecture and relationships within the game. It highlights key components, such as the flow between screens, sprite classes, and grid interactions, as well as how algorithms like Dijkstra's and Q-Learning are integrated:
+
+![UML Diagram](../assets/img/uml.png)  
+_Figure: UML diagram representing the game architecture and component relationships._
+
+---
+
+#### **Link to Source Code**
+
+The complete source code for the project is hosted on GitHub:  
+[GitHub Repo Link](https://github.com/dakotacsk/pie_shortestpathfindingvisualization)
 
 ---
 

@@ -1,4 +1,4 @@
-# Mechanical and Electrical Design
+# Mechanical Design
 
 ## Final Technical Overview
 
@@ -7,13 +7,6 @@
 - **Description**: Provide an overview of the mechanical components, including key design features and specifications.
 - **CAD Renderings**:
   - Insert CAD images or renderings here (or link to `assets` if applicable).
-
-### Electrical Design
-
-- **Circuit Diagrams**:
-  - Include circuit diagrams or schematics here (even rough hand-drawn versions are fine).
-- **Component List**:
-  - Provide a list of electrical components used and their roles.
 
 ### Analysis
 

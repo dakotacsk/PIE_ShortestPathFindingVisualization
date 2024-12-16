@@ -9,9 +9,10 @@ nav:
   - Home: index.md
   - Meet the Team: team.md
   - Project:
-      - Overview: project/project.md
-      - Mechanical: project/meche_ece.md
-      - Software & Firmware: project/software_firmware.md
+      - Final Overview: project/project.md
+      - Mechanical Process: project/meche.md
+      - Firmware & ECE Process: project/ece_firmware.md
+      - Software Process: project/software.md
   - Download!: download.md
 
 plugins:
@@ -27,7 +28,7 @@ markdown_extensions:
   - def_list
   - toc:
       baselevel: "1"
-      toc_depth: "3"
+      toc_depth: "1"
 
 extra:
   generator: false
