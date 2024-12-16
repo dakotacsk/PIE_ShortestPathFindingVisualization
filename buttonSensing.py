@@ -15,7 +15,7 @@ try:
     while True:
         for pin in button_pins:
             button_state = GPIO.input(pin)
-            if button_state == GPIO.LOW:
+            if button_state == GPIO.HIGH:
                 print(f"Button on GPIO {pin} is pressed!")
             else:
                 print(f"Button on GPIO {pin} is not pressed.")
