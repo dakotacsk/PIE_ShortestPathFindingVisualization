@@ -1,12 +1,30 @@
-# Mechanical Design
+# ECE & Firmware Design
 
 ## Final Technical Overview
 
-### Mechanical Design
+### Electrical Design
 
-- **Description**: Provide an overview of the mechanical components, including key design features and specifications.
-- **CAD Renderings**:
-  - Insert CAD images or renderings here (or link to `assets` if applicable).
+### Firmware Design
+
+Provide details on the firmware (e.g., Arduino logic), including tasks like LED control or input handling.
+
+**PLACEHOLDER**: Add firmware design description.
+
+**Example Snippet**:
+
+```cpp
+// Placeholder: LED Button Control Logic
+if (buttonPressed) {
+    digitalWrite(LED_PIN, HIGH);
+} else {
+    digitalWrite(LED_PIN, LOW);
+}
+```
+
+**Link to Source Code**:  
+[PLACEHOLDER: Firmware Repo Link](#)
+
+---
 
 ### Analysis
 

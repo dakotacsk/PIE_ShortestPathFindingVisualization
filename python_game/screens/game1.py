@@ -8,8 +8,8 @@ import time
 class Game1:
     def __init__(self, screen):
         self.screen = screen
-        self.grid = Grid(rows=5, cols=8, cell_size=240)  # Create the grid
-        self.sprite = DijkstraSprite(start_pos=[0, 0], cell_size=240, grid=self.grid)  # Initialize the sprite
+        self.grid = Grid(rows=4, cols=8, cell_size=170)  # Create the grid
+        self.sprite = DijkstraSprite(start_pos=[0, 0], cell_size=170, grid=self.grid)  # Initialize the sprite
         self.selected_position = [0, 0]  # Default selected position
         self.blink = True
         self.blink_timer = pygame.time.get_ticks()

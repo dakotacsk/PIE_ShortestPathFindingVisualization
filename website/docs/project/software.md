@@ -1,4 +1,4 @@
-# **Software and Firmware Design**
+# **Software Design**
 
 ### Software Design
 
@@ -47,31 +47,18 @@ _Figure: Flow diagram representing game architecture and flow._
 
 ---
 
+#### **UML Diagram**
+
+The UML diagram below showcases the architecture and relationships within the game. It highlights key components, such as the flow between screens, sprite classes, and grid interactions, as well as how algorithms like Dijkstra's and Q-Learning are integrated:
+
+![UML Diagram](../assets/img/uml.png)  
+_Figure: UML diagram representing the game architecture and component relationships._
+
+---
+
 #### **Link to Source Code**
 
 The complete source code for the project is hosted on GitHub:  
 [GitHub Repo Link](https://github.com/dakotacsk/pie_shortestpathfindingvisualization)
-
----
-
-### Firmware Design
-
-Provide details on the firmware (e.g., Arduino logic), including tasks like LED control or input handling.
-
-**PLACEHOLDER**: Add firmware design description.
-
-**Example Snippet**:
-
-```cpp
-// Placeholder: LED Button Control Logic
-if (buttonPressed) {
-    digitalWrite(LED_PIN, HIGH);
-} else {
-    digitalWrite(LED_PIN, LOW);
-}
-```
-
-**Link to Source Code**:  
-[PLACEHOLDER: Firmware Repo Link](#)
 
 ---
