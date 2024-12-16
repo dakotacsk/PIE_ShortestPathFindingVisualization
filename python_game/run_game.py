@@ -32,7 +32,7 @@ def run_game(screen):
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((1920, 1080))
+    screen = pygame.display.set_mode((1360, 768))
     pygame.display.set_caption("Hatchling's Quest: Pathfinding Trials")
     
     running = True
