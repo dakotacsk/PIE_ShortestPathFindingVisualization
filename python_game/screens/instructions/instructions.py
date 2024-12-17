@@ -6,20 +6,35 @@ class Instructions(ScrollingTextDisplay):
     def __init__(self, screen):
         instructions_content = [
             "Tutorial Level - Dijkstra's Maze:",
-            "Objective: A baby turtle just hatched, and needs to get to the ocean and start a life for itself!",
-            "You are in charge of creating a unique beach for a turtle hatchling to walk through on it's way to the ocean.",
-            "You can place light sources, which mimic the light from the moon reflecting onto the surface of the ocean.",
-            "Turtle hatchlings use the light from the moon as a natural compass that leads them to the Ocean.",
-            "Artificial lights created by humans can confuse turtles, and cause them to walk in circles, or away from the "
-            "ocean entirely when they first hatch.",
-            "You can place ghost crabs, which are one of these hatchlings' natural predators.",
-            "The hatchling will do everything in its power to avoid these pesky guys.",
+            "Objective:",
+            "Help the baby turtle hatchling safely reach the ocean (bottom-right square).",
+            "You are in charge of designing a unique beach environment for the turtle to navigate.",
+            "The hatchling will follow the safest path to the ocean, while actively avoiding obstacles and moving towards rewards.",
+            "Help your hatchling find a path to safety!",
+            "This level's hatchling is assumed to behave completely as you would expect.",
             "",
-            "Controls: Use arrow keys to move the black box. Click the green button once to place a ghost crab (red block), "
-            "click the green button again to place a light source (green block), "
-            "click the green button once more to revert it to an empty square. ",
-            "Have fun!",
-            ""
+            "Mechanics:",
+            "- Light Sources (Green Blocks): These mimic the light from the moon, creating safe areas the hatchling is incentivized to move toward.",
+            "- Ghost Crabs (Red Blocks): These are predators that the hatchling will avoid as much as possible.",
+            "",
+            "How It Works:",
+            "- The hatchling uses Dijkstra's algorithm to determine the shortest path to the ocean (bottom-right square).",
+            "- Light sources guide the turtle by attracting it to safer areas.",
+            "- Ghost crabs act as obstacles, increasing the hatchling's path distance as it tries to avoid them.",
+            "",
+            "Controls:",
+            "- Use the ARROW KEYS to move the black box (cursor).",
+            "- Click the GREEN BUTTON to place components:",
+            "    - First Click: Place a Ghost Crab (red block).",
+            "    - Second Click: Place a Light Source (green block).",
+            "    - Third Click: Revert the square to an empty tile.",
+            "",
+            "Tips:",
+            "- Place light sources (green blocks) to encourage the hatchling to move efficiently toward the ocean.",
+            "- Use ghost crabs (red blocks) to create obstacles and force the hatchling to find alternate paths.",
+            "- Experiment with different layouts to see how the hatchling adapts its path.",
+            "",
+            "Have fun designing the beach and guiding the hatchling to the ocean!"
         ]
         super().__init__(screen, "Instructions", instructions_content, font_size=20)
 
