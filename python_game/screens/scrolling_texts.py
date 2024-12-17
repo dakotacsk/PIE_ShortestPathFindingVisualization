@@ -1,9 +1,9 @@
 import pygame
 import sys
-
+from utils import resource_path
 
 class ScrollingTextDisplay:
-    def __init__(self, screen, title_text, content_lines, font_path='./fonts/PressStart2P-Regular.ttf', font_size=20, logo_path=None):
+    def __init__(self, screen, title_text, content_lines, font_path=resource_path('fonts/PressStart2P-Regular.ttf'), font_size=20, logo_path=None):
         self.screen = screen
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(font_path, font_size)

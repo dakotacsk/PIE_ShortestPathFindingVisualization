@@ -3,14 +3,25 @@ import csv
 import os
 import sys
 
+# Fallback resource_path function
+def resource_path(relative_path):
+    """ Get absolute path to resource, compatible with PyInstaller and normal runs """
+    if getattr(sys, 'frozen', False):  # PyInstaller bundle
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath(".")  # Current directory for normal runs
+    return os.path.join(base_path, relative_path)
 
 class Leaderboard:
-    def __init__(self, screen, restart_callback, csv_filename="./leaderboard/leaderboard.csv",
-                 font_path="./fonts/PressStart2P-Regular.ttf"):
+    def __init__(self, screen, restart_callback, csv_filename=resource_path("leaderboard/leaderboard.csv"),
+                 font_path=resource_path("fonts/PressStart2P-Regular.ttf")):
         self.screen = screen
         self.clock = pygame.time.Clock()
         self.restart_callback = restart_callback
         self.csv_filename = csv_filename
+
+        # Debug print to check path resolution
+        print(f"[DEBUG] CSV File Path: {self.csv_filename}")
 
         # Fonts
         self.title_font = pygame.font.Font(font_path, 42)  # Reduced font size for title

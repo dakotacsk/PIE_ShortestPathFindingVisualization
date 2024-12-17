@@ -1,6 +1,7 @@
 import pygame
 import heapq
 import time
+from utils import resource_path
 
 BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
@@ -79,7 +80,7 @@ class DijkstraSprite:
         x, y = self.position[1] * self.cell_size + self.cell_size // 2, self.position[0] * self.cell_size + self.cell_size // 2
         color = YELLOW if self.reached_goal else BLACK  # Change color to yellow if goal is reached
         # Load the image
-        image = pygame.image.load('./images/normal_turtle.png')
+        image = pygame.image.load(resource_path('images/normal_turtle.png'))
 
         # Optionally, scale the image to match the circle's radius
         image = pygame.transform.scale(image, (self.cell_size // 3 * 2, self.cell_size // 3 * 2))

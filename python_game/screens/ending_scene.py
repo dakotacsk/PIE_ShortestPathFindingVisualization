@@ -1,5 +1,7 @@
 import pygame
 import sys
+from utils import resource_path
+
 from screens.scrolling_texts import ScrollingTextDisplay
 from screens.leaderboard import Leaderboard
 
@@ -16,7 +18,7 @@ class EndingScene(ScrollingTextDisplay):
         self.main_menu_callback = main_menu_callback  # Add main menu callback
         self.retry_callback = retry_callback
         self.user_score = user_score
-        self.leaderboard = Leaderboard(screen, retry_callback, csv_filename="../python_game/leaderboard/leaderboard.csv")
+        self.leaderboard = Leaderboard(screen, retry_callback, csv_filename=resource_path("leaderboard/leaderboard.csv"))
 
     def handle_events(self):
         for event in pygame.event.get():

@@ -1,4 +1,6 @@
 import pygame
+from utils import resource_path
+
 from grid.grid import Grid
 from sprites.QLearningSprite import QLearningSprite
 from screens.explanations.oscillation_explanation import OscillationExplanation
@@ -39,7 +41,7 @@ class Game2:
         self.pathfinding_started = False  # Whether pathfinding has started
 
     def max_steps_selection_screen(self):
-        font = pygame.font.Font("./fonts/PressStart2P-Regular.ttf", 36)
+        font = pygame.font.Font(resource_path("fonts/PressStart2P-Regular.ttf"), 36)
         title_text = font.render("Select Max Steps", True, (255, 255, 255))
         instructions_text = (
             "Arrow Keys to Select,\nRed Button to Confirm"  # Multi-line text

@@ -1,4 +1,5 @@
 import numpy as np
+from utils import resource_path
 import random
 import time
 import pygame
@@ -40,9 +41,9 @@ class QLearningSprite:
 
         # Load images for the sprite states
         self.images = {
-            "normal": pygame.image.load("./images/normal_turtle.png"),
-            "crashed": pygame.image.load("./images/wall_turtle.png"),
-            "caught": pygame.image.load("./images/destination_turtle.png"),
+            "normal": pygame.image.load(resource_path("images/normal_turtle.png")),
+            "crashed": pygame.image.load(resource_path("images/wall_turtle.png")),
+            "caught": pygame.image.load(resource_path("images/destination_turtle.png")),
         }
         # Scale images to fit the cell size
         for key in self.images:
@@ -195,7 +196,7 @@ class QLearningSprite:
 
 
     def draw_q_values_on_grid(self, screen):
-        font = pygame.font.Font('./fonts/PressStart2P-Regular.ttf', 12)
+        font = pygame.font.Font(resource_path('fonts/PressStart2P-Regular.ttf'), 12)
         offsets = [(0, -self.cell_size // 4), (self.cell_size // 4, 0), (0, self.cell_size // 4), (-self.cell_size // 4, 0)]
         for row in range(self.rows):
             for col in range(self.cols):
@@ -224,7 +225,7 @@ class QLearningSprite:
         return lines
 
     def draw_message(self, screen):
-        font = pygame.font.Font('./fonts/PressStart2P-Regular.ttf', 8)
+        font = pygame.font.Font(resource_path('fonts/PressStart2P-Regular.ttf'), 8)
         max_width = screen.get_width() - 20
         y_offset = screen.get_height() - 50
 

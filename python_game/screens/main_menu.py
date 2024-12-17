@@ -1,5 +1,7 @@
 import pygame
 import sys
+from utils import resource_path
+
 from screens.instructions.credits_instructions import show_instructions
 
 class MainMenu:
@@ -7,12 +9,12 @@ class MainMenu:
         self.screen = screen
         self.options = ["Start Game", "Instruction & Credits", "Exit Game"]
         self.selected_index = 0
-        self.font = pygame.font.Font('./fonts/PressStart2P-Regular.ttf', 28)  # Pac-Man-style font
+        self.font = pygame.font.Font(resource_path('fonts/PressStart2P-Regular.ttf'), 28)  # Pac-Man-style font
         self.blinking_logo_timer = 0
         self.blinking_logo_visible = True
 
         # Load logo
-        self.logo = pygame.image.load('./images/logo.png')
+        self.logo = pygame.image.load(resource_path('images/logo.png'))
         self.logo = pygame.transform.scale(self.logo, (500, 200))  # Resize as needed
 
     def run(self):
