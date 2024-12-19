@@ -35,51 +35,32 @@ Provide a table listing all components, their costs, and sources.
 
 ### Final System in Action
 
-Add images and videos of the final project setup.
-
-**PLACEHOLDER**: Replace this with images and videos of your system in action.
-
-**Example**:
-![Final System](assets/img/game-homepage.png)  
-_Figure: Completed arcade machine showcasing the game._
-
-### Demo Video
-
-Link to a video demo of the project.
-
-**PLACEHOLDER**: Add demo video link here.
-
-**Example**:  
-[Watch the Demo Video](https://your-demo-link.com)
+<iframe src="https://albumizr.com/a/5Bc-" scrolling="no" frameborder="0" allowfullscreen width="700" height="400"></iframe>
 
 ---
 
-## **Final Designs**
-
 ### **Mechanical Design**
 
-Provide a detailed description of the mechanical design, including materials, construction methods, and analysis.
+The mechanical design of the arcade machine emphasizes durability, modularity, and ergonomic user interaction.
 
-**PLACEHOLDER**: Add description of mechanical components.
+#### Overview:
 
-- **Include details on the design process, materials used, and fabrication methods.**
-- **Describe any stress testing, simulations, or structural analysis performed.**
-- Replace this placeholder with relevant CAD images, renderings, or diagrams if available.
+The final structure was laser-cut from 24”x18” ¼” MDF sheets, with gouache-painted inner panels and spray-painted outer surfaces. The modular control panel allows for easy troubleshooting, while access to the back enables maintenance. A slanted screen holder optimizes viewing angles and screen height for user comfort.
 
-**Example**:  
-![CAD Rendering](PLACEHOLDER)  
-_Figure: CAD rendering showing the structure and layout of the arcade machine._
+#### Key Features:
 
-**Design Highlights**:
+- **Materials:** MDF sheets, gouache, and spray paint.
+- **Fabrication Methods:** Laser cutting and wood glue assembly with sanded joints for improved adhesion.
+- **Modularity:** Removable control panel and accessible screen holder for power button operation.
 
-- **Materials**: Specify materials used (e.g., MDF, 3D-printed PLA, aluminum) and their purpose.
-- **Fabrication Methods**: Describe how parts were cut, assembled, and finished (e.g., laser cutting, 3D printing, spray painting).
-- **Modularity**: Explain how the design allows for future upgrades or ease of assembly.
+---
 
-**Analysis**:
+#### **CAD Rendering**
 
-- **Structural Analysis**: Summarize results from stress tests or simulations to verify durability.
-- **User Interaction**: Describe ergonomic considerations, such as button placement, screen height, and accessibility.
+Replace this with a CAD rendering or diagram showcasing the design:  
+![CAD Rendering](/assets/img/cad_image.png)  
+![CAD Rendering](/assets/img/cad_image_2.png)  
+_Figure: CAD rendering of the arcade machine structure._
 
 ---
 
@@ -98,15 +79,9 @@ _Figure: Circuit schematic showing connections between components._
 
 ---
 
----
-
 ### Software Design
 
 The software for **Hatchling's Quest: Pathfinding Trials** is designed to deliver an intuitive, engaging, and educational gaming experience while visualizing pathfinding algorithms in action.
-
-#### **Software Architecture**
-
-### Software Structure and Key Modules
 
 #### Overview:
 
@@ -142,7 +117,7 @@ The software relies on the following external libraries:
 
 The following flow diagram illustrates the architecture and flow of the game, showing transitions between levels, screens, and algorithms:
 
-![Flow Diagram](../assets/img/pathfinders_flow.png)  
+![Flow Diagram](/assets/img/pathfinders_flow.png)  
 _Figure: Flow diagram representing game architecture and flow._
 
 ---
@@ -151,7 +126,7 @@ _Figure: Flow diagram representing game architecture and flow._
 
 The UML diagram below showcases the architecture and relationships within the game. It highlights key components, such as the flow between screens, sprite classes, and grid interactions, as well as how algorithms like Dijkstra's and Q-Learning are integrated:
 
-![UML Diagram](../assets/img/uml.png)  
+![UML Diagram](/assets/img/uml.png)  
 _Figure: UML diagram representing the game architecture and component relationships._
 
 ---
@@ -161,22 +136,9 @@ _Figure: UML diagram representing the game architecture and component relationsh
 The complete source code for the project is hosted on GitHub:  
 [GitHub Repo Link](https://github.com/dakotacsk/pie_shortestpathfindingvisualization)
 
+More details to be found in subpage named Software Process.
+
 ---
-
-## Process
-
-### Design Decisions
-
-- Outline the major mechanical and electrical design choices made and why.
-- Discuss alternatives considered and how time/budget constraints influenced the final design.
-
-### Challenges
-
-- Highlight challenges encountered in mechanical/electrical development and how they were resolved.
-
-### Progress Timeline
-
-- Provide a short timeline or milestones for mechanical/electrical progress.
 
 ## **Diagrams**
 
@@ -187,7 +149,7 @@ Insert a high-level diagram showing how energy and data move through the system.
 **PLACEHOLDER**: Add data and energy flow diagram.
 
 **Example**:  
-![Energy Flow Diagram](../assets/img/energy_flow.png)  
+![Energy Flow Diagram](/assets/img/energy_flow.png)  
 _Figure: Data and energy flow in the arcade system._
 
 ---
