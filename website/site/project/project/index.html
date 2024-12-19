@@ -18,7 +18,7 @@
 
     
  
-<title>Overview - PathFinder</title>
+<title>Final Overview - PathFinder</title>
 
 
 <link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
@@ -210,7 +210,7 @@
         
         <span class="
 
-    terminal-mkdocs-side-nav-item--active">Overview</span>
+    terminal-mkdocs-side-nav-item--active">Final Overview</span>
     
     </li>
             
@@ -225,7 +225,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../meche_ece/">Mechanical</a>
+    terminal-mkdocs-side-nav-item" href="../meche/">Mechanical Process</a>
         
     
     </li>
@@ -241,7 +241,23 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../software_firmware/">Software & Firmware</a>
+    terminal-mkdocs-side-nav-item" href="../ece_firmware/">Firmware & ECE Process</a>
+        
+    
+    </li>
+            
+        
+            
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../software/">Software Process</a>
         
     
     </li>
@@ -277,7 +293,7 @@
 <nav>
     <ul>
         <li><a href="#project-overview">Project Overview</a></li>
-        <li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#budget-and-components">Budget and Components</a></li><li><a href="#media">Media</a></li><li><a href="#electrical-and-mechanical-design">Electrical and Mechanical Design</a></li><li><a href="#diagrams">Diagrams</a></li><li><a href="#conclusion">Conclusion</a></li>
+        
     </ul>
 </nav>
 </aside>
@@ -288,11 +304,13 @@
 <ol>
 <li><a href="#budget-and-components">Budget and Components</a></li>
 <li><a href="#media">Media</a></li>
-<li><a href="#electrical-and-mechanical-design">Electrical and Mechanical Design</a></li>
-<li><a href="#software-and-firmware-design">Software and Firmware Design</a></li>
-<li><a href="#diagrams">Diagrams</a></li>
+<li><a href="#mechanical-design">Mechanical Design</a></li>
+<li><a href="#electrical-and-firmware-design">Electrical and Firmware Design</a></li>
+<li><a href="#software-design">Software Design</a></li>
+<li><a href="#diagrams">Energy Flow &amp; System Diagrams</a></li>
 </ol>
 <hr />
+<p><model-viewer src="pathfinder.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" camera-orbit="-1053deg 73.25deg 1.936m" field-of-view="30deg"> </model-viewer></p>
 <h2 id="budget-and-components"><strong>Budget and Components</strong></h2>
 <h3 id="spending-breakdown">Spending Breakdown</h3>
 <p>Provide a table listing all components, their costs, and sources.</p>
@@ -338,8 +356,31 @@
 <p><strong>Example</strong>:<br />
 <a href="https://your-demo-link.com">Watch the Demo Video</a></p>
 <hr />
-<h2 id="electrical-and-mechanical-design"><strong>Electrical and Mechanical Design</strong></h2>
-<h3 id="electrical-design">Electrical Design</h3>
+<h2 id="final-designs"><strong>Final Designs</strong></h2>
+<h3 id="mechanical-design"><strong>Mechanical Design</strong></h3>
+<p>Provide a detailed description of the mechanical design, including materials, construction methods, and analysis.</p>
+<p><strong>PLACEHOLDER</strong>: Add description of mechanical components.</p>
+<ul>
+<li><strong>Include details on the design process, materials used, and fabrication methods.</strong></li>
+<li><strong>Describe any stress testing, simulations, or structural analysis performed.</strong></li>
+<li>Replace this placeholder with relevant CAD images, renderings, or diagrams if available.</li>
+</ul>
+<p><strong>Example</strong>:<br />
+<img alt="CAD Rendering" src="PLACEHOLDER" /><br />
+<em>Figure: CAD rendering showing the structure and layout of the arcade machine.</em></p>
+<p><strong>Design Highlights</strong>:</p>
+<ul>
+<li><strong>Materials</strong>: Specify materials used (e.g., MDF, 3D-printed PLA, aluminum) and their purpose.</li>
+<li><strong>Fabrication Methods</strong>: Describe how parts were cut, assembled, and finished (e.g., laser cutting, 3D printing, spray painting).</li>
+<li><strong>Modularity</strong>: Explain how the design allows for future upgrades or ease of assembly.</li>
+</ul>
+<p><strong>Analysis</strong>:</p>
+<ul>
+<li><strong>Structural Analysis</strong>: Summarize results from stress tests or simulations to verify durability.</li>
+<li><strong>User Interaction</strong>: Describe ergonomic considerations, such as button placement, screen height, and accessibility.</li>
+</ul>
+<hr />
+<h3 id="electrical-and-firmware-design">Electrical and Firmware Design</h3>
 <p>Provide a description of the electrical system, including connections, power requirements, and analysis.</p>
 <p><strong>PLACEHOLDER</strong>: Add description of electrical components.</p>
 <ul>
@@ -350,6 +391,66 @@
 <img alt="Electronics Schematic" src="PLACEHOLDER" /><br />
 <em>Figure: Circuit schematic showing connections between components.</em></p>
 <hr />
+<hr />
+<h3 id="software-design">Software Design</h3>
+<p>The software for <strong>Hatchling's Quest: Pathfinding Trials</strong> is designed to deliver an intuitive, engaging, and educational gaming experience while visualizing pathfinding algorithms in action.</p>
+<h4 id="software-architecture"><strong>Software Architecture</strong></h4>
+<h3 id="software-structure-and-key-modules">Software Structure and Key Modules</h3>
+<h4 id="overview">Overview:</h4>
+<p>The software is divided into three main areas:</p>
+<ul>
+<li><strong>Game Interface</strong>: Handles the GUI, animations, and user input using <strong>Pygame</strong>.</li>
+<li><strong>Pathfinding Algorithms</strong>:</li>
+<li><strong>Dijkstra's Algorithm</strong> (Level 1): Computes shortest paths.</li>
+<li><strong>Q-Learning</strong> (Level 2): Enables reward-based navigation.</li>
+<li><strong>Game Logic</strong>: Manages screens, game states, and leaderboards.</li>
+</ul>
+<h4 id="key-modules">Key Modules:</h4>
+<ul>
+<li><strong><code>run_game.py</code></strong>: Coordinates game flow.</li>
+<li><strong><code>grid/grid.py</code></strong>: Defines the pathfinding grid.</li>
+<li><strong>Pathfinding Modules</strong>:</li>
+<li><strong><code>sprites/DijkstraSprite.py</code></strong>: Implements Dijkstra’s Algorithm.</li>
+<li><strong><code>sprites/QLearningSprite.py</code></strong>: Implements Q-Learning.</li>
+<li><strong>Screens</strong>: Main menu, instructions, and interactive gameplay feedback.</li>
+<li><strong>Leaderboard</strong>: Tracks and displays high scores via <strong><code>leaderboard/leaderboard.py</code></strong>.</li>
+</ul>
+<h4 id="dependencies"><strong>Dependencies</strong></h4>
+<p>The software relies on the following external libraries:</p>
+<ul>
+<li><strong>Python 3.11.7</strong>: Core language used for development.</li>
+<li><strong>NumPy (2.2.0)</strong>: Used for matrix operations in Q-Learning, including Q-table computations.</li>
+<li><strong>Pygame (2.6.1)</strong>: Provides the framework for rendering the game interface and managing user input.</li>
+</ul>
+<hr />
+<h4 id="flow-diagram-for-game"><strong>Flow Diagram for Game</strong></h4>
+<p>The following flow diagram illustrates the architecture and flow of the game, showing transitions between levels, screens, and algorithms:</p>
+<p><img alt="Flow Diagram" src="../../assets/img/pathfinders_flow.png" /><br />
+<em>Figure: Flow diagram representing game architecture and flow.</em></p>
+<hr />
+<h4 id="uml-diagram"><strong>UML Diagram</strong></h4>
+<p>The UML diagram below showcases the architecture and relationships within the game. It highlights key components, such as the flow between screens, sprite classes, and grid interactions, as well as how algorithms like Dijkstra's and Q-Learning are integrated:</p>
+<p><img alt="UML Diagram" src="../../assets/img/uml.png" /><br />
+<em>Figure: UML diagram representing the game architecture and component relationships.</em></p>
+<hr />
+<h4 id="link-to-source-code"><strong>Link to Source Code</strong></h4>
+<p>The complete source code for the project is hosted on GitHub:<br />
+<a href="https://github.com/dakotacsk/pie_shortestpathfindingvisualization">GitHub Repo Link</a></p>
+<hr />
+<h2 id="process">Process</h2>
+<h3 id="design-decisions">Design Decisions</h3>
+<ul>
+<li>Outline the major mechanical and electrical design choices made and why.</li>
+<li>Discuss alternatives considered and how time/budget constraints influenced the final design.</li>
+</ul>
+<h3 id="challenges">Challenges</h3>
+<ul>
+<li>Highlight challenges encountered in mechanical/electrical development and how they were resolved.</li>
+</ul>
+<h3 id="progress-timeline">Progress Timeline</h3>
+<ul>
+<li>Provide a short timeline or milestones for mechanical/electrical progress.</li>
+</ul>
 <h2 id="diagrams"><strong>Diagrams</strong></h2>
 <h3 id="data-and-energy-flow-diagram">Data and Energy Flow Diagram</h3>
 <p>Insert a high-level diagram showing how energy and data move through the system.</p>

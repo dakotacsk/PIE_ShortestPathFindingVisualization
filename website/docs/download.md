@@ -2,11 +2,11 @@
 
 ## Download game
 
-[Windows](pathfinder_windows.exe){ .btn .btn-primary .btn-ghost .btn-block}
+<a download="GFG">[Windows](https://github.com/dakotacsk/pie_shortestpathfindingvisualization/tree/main/python_game/pathfinders.app){ .btn .btn-primary .btn-ghost .btn-block}</a>
 
-[MacOS](pathfinder_mac.exe){ .btn .btn-error .btn-ghost .btn-block}
+[MacOS](https://github.com/dakotacsk/pie_shortestpathfindingvisualization/tree/main/python_game/pathfinders.app){ .btn .btn-error .btn-ghost .btn-block}
 
-[Linux](pathfinder_linux.exe){ .btn .btn-ghost .btn-block}
+[Linux](https://github.com/dakotacsk/pie_shortestpathfindingvisualization/tree/main/python_game/pathfinders.app){ .btn .btn-ghost .btn-block}
 
 ---
 

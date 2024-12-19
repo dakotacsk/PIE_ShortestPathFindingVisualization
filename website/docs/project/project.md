@@ -11,6 +11,8 @@
 
 ---
 
+<model-viewer src="pathfinder.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" camera-orbit="-1053deg 73.25deg 1.936m" field-of-view="30deg"> </model-viewer>
+
 ## **Budget and Components**
 
 ### Spending Breakdown
@@ -96,6 +98,8 @@ _Figure: Circuit schematic showing connections between components._
 
 ---
 
+---
+
 ### Software Design
 
 The software for **Hatchling's Quest: Pathfinding Trials** is designed to deliver an intuitive, engaging, and educational gaming experience while visualizing pathfinding algorithms in action.
@@ -158,6 +162,21 @@ The complete source code for the project is hosted on GitHub:
 [GitHub Repo Link](https://github.com/dakotacsk/pie_shortestpathfindingvisualization)
 
 ---
+
+## Process
+
+### Design Decisions
+
+- Outline the major mechanical and electrical design choices made and why.
+- Discuss alternatives considered and how time/budget constraints influenced the final design.
+
+### Challenges
+
+- Highlight challenges encountered in mechanical/electrical development and how they were resolved.
+
+### Progress Timeline
+
+- Provide a short timeline or milestones for mechanical/electrical progress.
 
 ## **Diagrams**
 
