@@ -20,7 +20,7 @@ Our goal was to build a **proof of concept** with:
 4. Early progress on the **Q-Learning agent**.
 5. Teaching users the difference between **Dijkstra’s Algorithm** and **Q-Learning**.
 
-![GIF Example](../assets/img/pathfinding_example.gif)
+![GIF Example](/assets/img/pathfinding_example.gif)
 
 ---
 
@@ -84,8 +84,6 @@ For Sprint 2, we focused on **graphics, gameplay tweaks**, and building an **MVP
 - Fully functional **Q-Learning sprite**.
 - Real-time **Q-Table Visualization** for intuitive learning feedback.
 
----
-
 ### **2. User Interface**
 
 - Functional **Home Page** and two **Instruction Screens**:
@@ -93,34 +91,24 @@ For Sprint 2, we focused on **graphics, gameplay tweaks**, and building an **MVP
   2.  Overview of **Dijkstra’s Algorithm** and **Q-Learning**.
 - Added a **Credits Screen** with consistent styling.
 
----
-
 ### **3. Gameplay Feedback**
 
 - On-screen messages show:
   - Current step of the Q-Learning sprite.
   - Progress out of **5000 max steps**.
 
----
-
 ### **4. Visual Updates**
 
 - Adjusted to a **horizontal layout** for arcade monitor compatibility.
 - Limited controls to **6 buttons** for simplicity.
 
----
-
 ### **5. Scrolling Text**
 
 - Standardized scrolling text animations with a **base class**.
 
----
-
 ### **6. Leaderboard Screen**
 
 - Added a **non-functional leaderboard screen** (debugging in progress).
-
----
 
 ### **7. Explanation Screen**
 
@@ -213,7 +201,7 @@ In Sprint 2, we explored potential storylines to align gameplay with engaging na
 > - **Dijkstra**: Safest, most optimal path.
 > - **Q-Learning**: Learns dynamically to avoid threats.
 
-![Narrative Ideations](../assets/img/narrative_ideation.png)
+![Narrative Ideations](/assets/img/narrative_ideation.png)
 
 ---
 
@@ -255,4 +243,4 @@ At this stage, the primary focus is on:
 
 > **Pivot**: Finishing the **final touches** and fixing all remaining **bugs** to ensure the game is robust and ready for release.
 
-## You can see the final results in the project overview! Alternatively, feel free to play the game using the download page.
+## You can see the final results in the [Project Overview](project.md)! Alternatively, feel free to play the game using the download page.
