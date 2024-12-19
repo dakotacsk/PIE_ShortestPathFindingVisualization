@@ -23,8 +23,8 @@ Provide a table listing all components, their costs, and sources.
 
 | **Component/Material** | **Cost (USD)**        | **Source**          |
 | ---------------------- | --------------------- | ------------------- |
-| Example Component 1    | $XX                   | Example Source      |
-| Example Component 2    | Free (Estimated: $XX) | Donated or Provided |
+| Computer Monitor       | Free (Estimated: $50) | PIE Studio          |
+| Micro HDMI to HDMI cable| Donated or Provided |                      |
 | Example Component 3    | $XX                   | Purchased/Online    |
 
 **Total Estimated Cost**: **PLACEHOLDER**: Add total value.
